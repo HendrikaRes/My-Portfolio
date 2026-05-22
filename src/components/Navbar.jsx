@@ -131,7 +131,7 @@ const scrollToSection = (e, sectionId) => {
   ))}
               <div className="h-px bg-slate-800 my-2"></div>
               
-              <a href="mailto:emailkamu@gmail.com" className="text-center w-full py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl shadow-lg shadow-blue-500/30 transition-colors">
+              <a href="mailto:hendrikarestu2003@gmail.com" className="text-center w-full py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl shadow-lg shadow-blue-500/30 transition-colors">
                 Hire Me
               </a>
             </div>
