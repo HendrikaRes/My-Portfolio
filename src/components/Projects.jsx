@@ -33,16 +33,16 @@ export default function Projects() {
   "title": "SIMPG (Sistem Informasi Manajemen Pura Engineering)",
   "desc": "Sistem informasi internal terintegrasi untuk mendigitalisasi, memonitor, dan mengotomatisasi manajemen operasional, administrasi, serta pelaporan data pada divisi Engineering PT. Pura Barutama.",
   "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
-  "image": "/dokumentasi/simpg.png",
+  "image": "/dokumentasi/simpgg.png",
   "githubLink": "#",
   "liveLink": "#"
     },
     {
       id: 4,
-      title: "Sistem Informasi Akademik",
+      title: "Digiself",
       desc: "Pengembangan sistem manajemen data mahasiswa dan dosen dengan antarmuka yang responsif dan mudah digunakan.",
-      tech: ["React.js", "Tailwind"],
-      image: "https://via.placeholder.com/600x400",
+      tech: ["Laravel", "Tailwind", "MySQL"],
+      image: "/dokumentasi/perpus.png",
       githubLink: "#",
       liveLink: "#"
     },
