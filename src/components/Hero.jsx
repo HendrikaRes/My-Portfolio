@@ -26,40 +26,40 @@ export default function Hero() {
           {/* Badge Kecil Estetik */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-6 animate-pulse hover:bg-blue-500/20 transition-colors cursor-default">
             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-            Tersedia untuk Kerja / Magang
+            Open to Work / Internship
           </div>
 
-          {/* Heading dengan Sorotan Warna */}
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight text-white">
-            Saya <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Hendrik</span>
-            <br />
-            {/* Efek Ngetik Animasi */}
-            <span className="text-4xl md:text-5xl text-slate-300 font-bold block mt-2 h-[60px]">
-              <TypeAnimation
-                sequence={[
-                  'Web Developer',
-                  2000, // jeda 2 detik
-                  'Fullstack Developer',
-                  2000,
-                  'Laravel & React',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
-            </span>
-          </h1>
+          {/* Heading with Color Highlight */}
+<h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight text-white">
+  I am <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Hendrik</span>
+  <br />
+  {/* Animated Typing Effect */}
+  <span className="text-4xl md:text-5xl text-slate-300 font-bold block mt-2 h-[60px]">
+    <TypeAnimation
+      sequence={[
+        'Web Developer',
+        2000, // 2-second pause
+        'Fullstack Developer',
+        2000,
+        'Laravel & React Expert',
+        2000,
+      ]}
+      wrapper="span"
+      speed={50}
+      repeat={Infinity}
+    />
+  </span>
+</h1>
 
-          {/* Deskripsi Profesional */}
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-slate-400 max-w-2xl mx-auto md:mx-0 mb-10 text-lg leading-relaxed"
-          >
-           Lulusan Sistem Informasi yang adaptif dan memiliki antusiasme tinggi untuk mempelajari teknologi baru. Berpengalaman dalam mengoptimalisasi sistem internal yang efisien, dengan spesialisasi pada arsitektur Backend menggunakan <span className="text-slate-200 font-medium">Laravel</span> dan pengembangan antarmuka Frontend yang modern berbasis <span className="text-slate-200 font-medium">React.js</span>.
-          </motion.p>
+{/* Professional Description */}
+<motion.p 
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.5, duration: 0.8 }}
+  className="text-slate-400 max-w-2xl mx-auto md:mx-0 mb-10 text-lg leading-relaxed"
+>
+  An adaptable Information Systems graduate with a high enthusiasm for exploring new technologies. Experienced in optimizing efficient internal systems, specializing in robust Backend architecture using <span className="text-slate-200 font-medium">Laravel</span> and crafting modern, interactive Frontend interfaces built on <span className="text-slate-200 font-medium">React.js</span>.
+</motion.p>
 
           {/* Tombol Aksi */}
           <motion.div 
