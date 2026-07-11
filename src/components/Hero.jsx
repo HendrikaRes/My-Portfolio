@@ -96,6 +96,10 @@ const timelineData = {
 
 export default function Hero({ lang }) {
   const [isCVOpen, setIsCVOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMouseMoved, setIsMouseMoved] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
   const internshipImages = [
     "/dokumentasi/pres.jpeg",
     "/dokumentasi/team.jpeg",
@@ -104,9 +108,54 @@ export default function Hero({ lang }) {
     "/dokumentasi/pp.jpeg",
   ];
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    if (!isMouseMoved) setIsMouseMoved(true);
+  };
+
+  const handlePhotoMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+    // Maksimal rotasi 15 derajat
+    const rX = -(mouseY / (height / 2)) * 15;
+    const rY = (mouseX / (width / 2)) * 15;
+    setTilt({ x: rX, y: rY });
+  };
+
+  const handlePhotoMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
   return (
-    <section id="home" className="pt-36 pb-12 px-6 bg-slate-950 overflow-hidden relative">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+    <section 
+      id="home" 
+      onMouseMove={handleMouseMove} 
+      className="pt-36 pb-12 px-6 bg-slate-950 overflow-hidden relative"
+    >
+      {/* Background Grid & Interactive Spotlight Glow */}
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-80"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at ${isMouseMoved ? `${mousePos.x}px ${mousePos.y}px` : '50% 30%'}, rgba(59, 130, 246, 0.15) 0%, rgba(16, 185, 129, 0.05) 35%, transparent 65%),
+            linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: '100% 100%, 45px 45px, 45px 45px',
+          WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+          maskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
         
         {/* Kolom Teks */}
         <motion.div 
@@ -195,17 +244,33 @@ export default function Hero({ lang }) {
           <motion.div 
             animate={{ y: [0, -15, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="relative group"
+            className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-            
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-slate-800 shadow-2xl shadow-blue-500/20 group-hover:border-blue-500/50 transition-colors duration-500">
-              <img 
-                src="img/pp12.webp" 
-                alt="Hendrik - Fullstack Developer" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-              />
-            </div>
+            <motion.div
+              onMouseMove={handlePhotoMouseMove}
+              onMouseLeave={handlePhotoMouseLeave}
+              animate={{ 
+                rotateX: tilt.x, 
+                rotateY: tilt.y,
+              }}
+              style={{ transformPerspective: 1000 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="relative group cursor-grab active:cursor-grabbing"
+            >
+              {/* Rotating outer rings */}
+              <div className="absolute -inset-4 rounded-full border border-dashed border-blue-500/30 group-hover:border-blue-500/60 animate-[spin_40s_linear_infinite] pointer-events-none" />
+              <div className="absolute -inset-8 rounded-full border border-dotted border-emerald-500/20 group-hover:border-emerald-500/40 animate-[spin_60s_linear_infinite_reverse] pointer-events-none" />
+              
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              
+              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-slate-800 shadow-2xl shadow-blue-500/20 group-hover:border-blue-500/50 transition-colors duration-500">
+                <img 
+                  src="img/pp12.webp" 
+                  alt="Hendrik - Fullstack Developer" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

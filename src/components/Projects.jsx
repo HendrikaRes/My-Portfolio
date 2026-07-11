@@ -5,6 +5,15 @@ const projectsData = {
   ID: [
     {
       "id": 1,
+      "title": "Tech Desa",
+      "desc": "Platform marketplace penyedia jasa teknologi pribadi, seperti pembuatan website kustom (profil sekolah/perusahaan, landing page, e-commerce) dan aplikasi web interaktif, yang dirancang untuk mendigitalisasi UMKM lokal.",
+      "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
+      "image": "/dokumentasi/techdesa.JPG",
+      "githubLink": "#",
+      "liveLink": "https://techdesa.my.id/"
+    },
+    {
+      "id": 2,
       "title": "Overtime Order System (SPL)",
       "desc": "Sistem otomatisasi lembur terintegrasi yang dilengkapi dengan Tanda Tangan Digital berbasis QR Code. Dikembangkan menggunakan metodologi Agile dan framework Laravel untuk mengoptimalkan efisiensi administratif perusahaan.",
       "tech": ["Laravel", "PostgreSQL", "QR Code"],
@@ -13,7 +22,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Medipluse",
       "desc": "Proyek kolaboratif capstone untuk program MSIB Batch 7 di Rakamin Academy, dikembangkan sebagai Full Stack Developer. Aplikasi ini mendigitalisasi dan mengintegrasikan manajemen kesehatan pribadi dengan pengingat obat otomatis.",
       "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
@@ -22,7 +31,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "SIMPG (Pura Engineering Management Information System)",
       "desc": "Sistem informasi internal terintegrasi yang dirancang untuk mendigitalisasi, memantau, dan mengotomatisasi manajemen operasional, administrasi, dan pelaporan data dalam Divisi Engineering PT. Pura Barutama.",
       "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
@@ -31,7 +40,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 4,
+      "id": 5,
       "title": "Digishelf",
       "desc": "Sistem manajemen perpustakaan modern yang dikembangkan untuk mengoptimalkan katalogisasi buku, melacak riwayat sirkulasi dan peminjaman, serta mengelola data anggota secara real-time.",
       "tech": ["Laravel", "Tailwind", "MySQL"],
@@ -40,7 +49,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 5,
+      "id": 6,
       "title": "Employee E-Attendance (QR Code)",
       "desc": "Sistem manajemen kehadiran karyawan otomatis yang terintegrasi dengan tanda tangan QR Code untuk meningkatkan efisiensi pencatatan, mengeliminasi penggunaan kertas manual, dan memperkuat keamanan pelacakan data.",
       "tech": ["Laravel", "MySQL", "Bootstrap"],
@@ -49,11 +58,20 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 6,
+      "id": 7,
       "title": "Maintenix - Smart Mobile Maintenance Application",
       "desc": "Aplikasi pemeliharaan seluler cerdas yang dilengkapi dengan fitur klasifikasi kerusakan otomatis yang menganalisis suhu mesin, RPM, dan tegangan untuk memprediksi serta mengidentifikasi kerusakan secara real-time.",
       "tech": ["Flutter", "Python", "PostgreSQL"],
       "image": "/dokumentasi/mesin.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 8,
+      "title": "Plantix - Rice Leaf Disease Classifier",
+      "desc": "Aplikasi web klasifikasi penyakit tanaman padi berbasis kecerdasan buatan (AI) menggunakan algoritma deep learning. Pengguna cukup mengunggah foto daun padi untuk mendeteksi secara instan apakah padi tersebut sehat atau terkena penyakit (seperti Blas, Hawar Daun Bakteri, atau Tungro).",
+      "tech": ["Python", "TensorFlow", "React.js", "FastAPI", "Tailwind CSS"],
+      "image": "/dokumentasi/plantix.jpg",
       "githubLink": "#",
       "liveLink": "#"
     }
@@ -61,6 +79,15 @@ const projectsData = {
   EN: [
     {
       "id": 1,
+      "title": "Tech Desa",
+      "desc": "A personal technology services marketplace platform offering custom website development (school/company profiles, landing pages, e-commerce) and interactive web applications designed to digitize local MSMEs.",
+      "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
+      "image": "/dokumentasi/techdesa.JPG",
+      "githubLink": "#",
+      "liveLink": "https://techdesa.my.id/"
+    },
+    {
+      "id": 2,
       "title": "Overtime Order System (SPL)",
       "desc": "An integrated overtime automation system featuring QR Code-based Digital Signatures. Developed using the Agile methodology and Laravel framework to optimize corporate administrative efficiency.",
       "tech": ["Laravel", "PostgreSQL", "QR Code"],
@@ -69,7 +96,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Medipluse",
       "desc": "A collaborative capstone project for the MSIB Batch 7 program at Rakamin Academy, developed as a Full Stack Developer. This application digitizes and integrates personal healthcare management with automated medication reminders.",
       "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
@@ -78,7 +105,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "SIMPG (Pura Engineering Management Information System)",
       "desc": "An integrated internal information system designed to digitize, monitor, and automate operational management, administration, and data reporting within the Engineering Division of PT. Pura Barutama.",
       "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
@@ -87,7 +114,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 4,
+      "id": 5,
       "title": "Digishelf",
       "desc": "A modern library management system developed to optimize book cataloging, track circulation and borrowing history, and manage member data in real-time.",
       "tech": ["Laravel", "Tailwind", "MySQL"],
@@ -96,7 +123,7 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 5,
+      "id": 6,
       "title": "Employee E-Attendance (QR Code)",
       "desc": "An automated employee attendance management system integrated with QR Code signatures to improve checking efficiency, eliminate manual paperwork, and enhance data tracking security.",
       "tech": ["Laravel", "MySQL", "Bootstrap"],
@@ -105,11 +132,20 @@ const projectsData = {
       "liveLink": "#"
     },
     {
-      "id": 6,
+      "id": 7,
       "title": "Maintenix - Smart Mobile Maintenance Application",
       "desc": "A smart mobile maintenance application equipped with automated damage classification features that analyze machine temperature, RPM, and voltage to predict and identify faults in real-time.",
       "tech": ["Flutter", "Python", "PostgreSQL"],
       "image": "/dokumentasi/mesin.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 8,
+      "title": "Plantix - Rice Leaf Disease Classifier",
+      "desc": "An AI-powered rice plant disease classification web application utilizing deep learning algorithms. Users upload photos of rice leaves to instantly detect whether the plant is healthy or infected with diseases (e.g., Blast, Bacterial Leaf Blight, or Tungro).",
+      "tech": ["Python", "TensorFlow", "React.js", "FastAPI", "Tailwind CSS"],
+      "image": "/dokumentasi/plantix.jpg",
       "githubLink": "#",
       "liveLink": "#"
     }
@@ -193,6 +229,13 @@ export default function Projects({ lang }) {
                   <a href={project.githubLink} className="p-3 bg-slate-800 hover:bg-blue-600 rounded-full text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg" title="Lihat Source Code">
                     <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" /></svg>
                   </a>
+                  {project.liveLink && project.liveLink !== "#" && (
+                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800 hover:bg-emerald-600 rounded-full text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg" title="Lihat Website Live">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
 
