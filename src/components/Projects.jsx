@@ -1,74 +1,133 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Projects() {
-  // State untuk melacak project mana yang deskripsinya sedang dibuka
+const projectsData = {
+  ID: [
+    {
+      "id": 1,
+      "title": "Overtime Order System (SPL)",
+      "desc": "Sistem otomatisasi lembur terintegrasi yang dilengkapi dengan Tanda Tangan Digital berbasis QR Code. Dikembangkan menggunakan metodologi Agile dan framework Laravel untuk mengoptimalkan efisiensi administratif perusahaan.",
+      "tech": ["Laravel", "PostgreSQL", "QR Code"],
+      "image": "/dokumentasi/spl.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 2,
+      "title": "Medipluse",
+      "desc": "Proyek kolaboratif capstone untuk program MSIB Batch 7 di Rakamin Academy, dikembangkan sebagai Full Stack Developer. Aplikasi ini mendigitalisasi dan mengintegrasikan manajemen kesehatan pribadi dengan pengingat obat otomatis.",
+      "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
+      "image": "/dokumentasi/digi.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 3,
+      "title": "SIMPG (Pura Engineering Management Information System)",
+      "desc": "Sistem informasi internal terintegrasi yang dirancang untuk mendigitalisasi, memantau, dan mengotomatisasi manajemen operasional, administrasi, dan pelaporan data dalam Divisi Engineering PT. Pura Barutama.",
+      "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
+      "image": "/dokumentasi/simpg.webp",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 4,
+      "title": "Digishelf",
+      "desc": "Sistem manajemen perpustakaan modern yang dikembangkan untuk mengoptimalkan katalogisasi buku, melacak riwayat sirkulasi dan peminjaman, serta mengelola data anggota secara real-time.",
+      "tech": ["Laravel", "Tailwind", "MySQL"],
+      "image": "/dokumentasi/perpus.png",
+      "githubLink": "https://github.com/HendrikaRes/DigiShelf_",
+      "liveLink": "#"
+    },
+    {
+      "id": 5,
+      "title": "Employee E-Attendance (QR Code)",
+      "desc": "Sistem manajemen kehadiran karyawan otomatis yang terintegrasi dengan tanda tangan QR Code untuk meningkatkan efisiensi pencatatan, mengeliminasi penggunaan kertas manual, dan memperkuat keamanan pelacakan data.",
+      "tech": ["Laravel", "MySQL", "Bootstrap"],
+      "image": "/dokumentasi/abs.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 6,
+      "title": "Maintenix - Smart Mobile Maintenance Application",
+      "desc": "Aplikasi pemeliharaan seluler cerdas yang dilengkapi dengan fitur klasifikasi kerusakan otomatis yang menganalisis suhu mesin, RPM, dan tegangan untuk memprediksi serta mengidentifikasi kerusakan secara real-time.",
+      "tech": ["Flutter", "Python", "PostgreSQL"],
+      "image": "/dokumentasi/mesin.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    }
+  ],
+  EN: [
+    {
+      "id": 1,
+      "title": "Overtime Order System (SPL)",
+      "desc": "An integrated overtime automation system featuring QR Code-based Digital Signatures. Developed using the Agile methodology and Laravel framework to optimize corporate administrative efficiency.",
+      "tech": ["Laravel", "PostgreSQL", "QR Code"],
+      "image": "/dokumentasi/spl.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 2,
+      "title": "Medipluse",
+      "desc": "A collaborative capstone project for the MSIB Batch 7 program at Rakamin Academy, developed as a Full Stack Developer. This application digitizes and integrates personal healthcare management with automated medication reminders.",
+      "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
+      "image": "/dokumentasi/digi.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 3,
+      "title": "SIMPG (Pura Engineering Management Information System)",
+      "desc": "An integrated internal information system designed to digitize, monitor, and automate operational management, administration, and data reporting within the Engineering Division of PT. Pura Barutama.",
+      "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
+      "image": "/dokumentasi/simpg.webp",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 4,
+      "title": "Digishelf",
+      "desc": "A modern library management system developed to optimize book cataloging, track circulation and borrowing history, and manage member data in real-time.",
+      "tech": ["Laravel", "Tailwind", "MySQL"],
+      "image": "/dokumentasi/perpus.png",
+      "githubLink": "https://github.com/HendrikaRes/DigiShelf_",
+      "liveLink": "#"
+    },
+    {
+      "id": 5,
+      "title": "Employee E-Attendance (QR Code)",
+      "desc": "An automated employee attendance management system integrated with QR Code signatures to improve checking efficiency, eliminate manual paperwork, and enhance data tracking security.",
+      "tech": ["Laravel", "MySQL", "Bootstrap"],
+      "image": "/dokumentasi/abs.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    },
+    {
+      "id": 6,
+      "title": "Maintenix - Smart Mobile Maintenance Application",
+      "desc": "A smart mobile maintenance application equipped with automated damage classification features that analyze machine temperature, RPM, and voltage to predict and identify faults in real-time.",
+      "tech": ["Flutter", "Python", "PostgreSQL"],
+      "image": "/dokumentasi/mesin.png",
+      "githubLink": "#",
+      "liveLink": "#"
+    }
+  ]
+};
+
+export default function Projects({ lang }) {
   const [activeId, setActiveId] = useState(null);
 
   const toggleDropdown = (id) => {
     setActiveId(activeId === id ? null : id);
   };
 
-  const projects = [
- {
-    "id": 1,
-    "title": "Overtime Order System (SPL)",
-    "desc": "An integrated overtime automation system featuring QR Code-based Digital Signatures. Developed using the Agile methodology and Laravel framework to optimize corporate administrative efficiency.",
-    "tech": ["Laravel", "PostgreSQL", "QR Code"],
-    "image": "/dokumentasi/spl.png",
-    "githubLink": "#",
-    "liveLink": "#"
-  },
-  {
-    "id": 2,
-    "title": "Medipluse",
-    "desc": "A collaborative capstone project for the MSIB Batch 7 program at Rakamin Academy, developed as a Full Stack Developer. This application digitizes and integrates personal healthcare management with automated medication reminders.",
-    "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
-    "image": "/dokumentasi/digi.png",
-    "githubLink": "#",
-    "liveLink": "#"
-  },
-  {
-    "id": 3,
-    "title": "SIMPG (Pura Engineering Management Information System)",
-    "desc": "An integrated internal information system designed to digitize, monitor, and automate operational management, administration, and data reporting within the Engineering Division of PT. Pura Barutama.",
-    "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
-    "image": "/dokumentasi/simpg.png",
-    "githubLink": "#",
-    "liveLink": "#"
-  },
-  {
-    "id": 4,
-    "title": "Digishelf",
-    "desc": "A modern library management system developed to optimize book cataloging, track circulation and borrowing history, and manage member data in real-time.",
-    "tech": ["Laravel", "Tailwind", "MySQL"],
-    "image": "/dokumentasi/perpus.png",
-    "githubLink": "https://github.com/HendrikaRes/DigiShelf_",
-    "liveLink": "#"
-  },
-  {
-    "id": 5,
-    "title": "Employee E-Attendance (QR Code)",
-    "desc": "An automated employee attendance management system integrated with QR Code signatures to improve checking efficiency, eliminate manual paperwork, and enhance data tracking security.",
-    "tech": ["Laravel", "MySQL", "Bootstrap"],
-    "image": "/dokumentasi/abs.png",
-    "githubLink": "#",
-    "liveLink": "#"
-  },
-  {
-    "id": 6,
-    "title": "Maintenix - Smart Mobile Maintenance Application",
-    "desc": "A smart mobile maintenance application equipped with automated damage classification features that analyze machine temperature, RPM, and voltage to predict and identify faults in real-time.",
-    "tech": ["Flutter", "Python", "PostgreSQL"],
-    "image": "/dokumentasi/mesin.png",
-    "githubLink": "#",
-    "liveLink": "#"
-  }
-  ];
+  const projects = projectsData[lang];
 
   return (
     <section id="projects" className="py-24 px-6 bg-slate-950 relative overflow-hidden">
-      {/* Ornamen Background (Opsional, agar tidak terlalu polos) */}
+      {/* Ornamen Background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
@@ -81,10 +140,20 @@ export default function Projects() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-              Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">Projects</span>
+              {lang === 'ID' ? (
+                <>
+                  Proyek <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">Unggulan</span>
+                </>
+              ) : (
+                <>
+                  Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">Projects</span>
+                </>
+              )}
             </h2>
             <p className="text-slate-400 max-w-xl text-lg leading-relaxed">
-              Kumpulan sistem yang telah saya kerjakan, dari otomatisasi kantor hingga integrasi dan manajemen data gudang.
+              {lang === 'ID' 
+                ? 'Kumpulan sistem yang telah saya kerjakan, dari otomatisasi kantor hingga integrasi dan manajemen data gudang.'
+                : 'A collection of systems I have developed, ranging from office automation to warehouse data integration and management.'}
             </p>
           </motion.div>
           
@@ -93,11 +162,11 @@ export default function Projects() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            href="https://github.com/username-kamu" 
+            href="https://github.com/HendrikaRes" 
             className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-800/50 hover:bg-slate-700 text-white rounded-xl font-bold transition-all border border-slate-700 hover:border-slate-500 shadow-lg"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" /></svg>
-            Lihat GitHub
+            {lang === 'ID' ? 'Lihat GitHub' : 'View GitHub'}
           </motion.a>
         </div>
 
@@ -108,7 +177,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }} // Stagger effect
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               key={project.id} 
               className="bg-slate-900/80 backdrop-blur-sm border border-slate-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-colors duration-500 flex flex-col shadow-2xl group"
             >
@@ -143,9 +212,11 @@ export default function Projects() {
                   {/* Dropdown Toggle */}
                   <button 
                     onClick={() => toggleDropdown(project.id)}
-                    className="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-blue-400 transition-colors w-full focus:outline-none"
+                    className="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-blue-400 transition-colors w-full focus:outline-none cursor-pointer"
                   >
-                    {activeId === project.id ? 'Sembunyikan Detail' : 'Baca Selengkapnya'}
+                    {activeId === project.id 
+                      ? (lang === 'ID' ? 'Sembunyikan Detail' : 'Hide Details') 
+                      : (lang === 'ID' ? 'Baca Selengkapnya' : 'Read More')}
                     <motion.svg 
                       animate={{ rotate: activeId === project.id ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -155,7 +226,7 @@ export default function Projects() {
                     </motion.svg>
                   </button>
 
-                  {/* Konten Deskripsi dengan Animasi Halus Framer Motion */}
+                  {/* Konten Deskripsi */}
                   <AnimatePresence>
                     {activeId === project.id && (
                       <motion.div
@@ -165,7 +236,7 @@ export default function Projects() {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-blue-500/50 pl-4 py-1">
+                        <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-blue-500/50 pl-4 py-1 text-justify">
                           {project.desc}
                         </p>
                       </motion.div>

@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedin, FaWhatsapp, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
 
-export default function Footer() {
+export default function Footer({ lang }) {
   const socials = [
     { 
       name: "WhatsApp", 
@@ -41,7 +41,6 @@ export default function Footer() {
   ];
 
   return (
-    // Mengubah background menjadi bg-slate-950 dan menghapus border-t
     <footer className="bg-slate-950 pt-24 pb-12 px-6 relative overflow-hidden">
       
       {/* Aurora Ambient Light Glow */}
@@ -55,28 +54,40 @@ export default function Footer() {
           <div className="md:col-span-7 text-center md:text-left space-y-5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-              Available for projects
+              {lang === 'ID' ? 'Tersedia untuk proyek' : 'Available for projects'}
             </div>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight">
-              Mari <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Berkolaborasi.</span>
+              {lang === 'ID' ? (
+                <>
+                  Mari <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Berkolaborasi.</span>
+                </>
+              ) : (
+                <>
+                  Let's <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Collaborate.</span>
+                </>
+              )}
             </h2>
             <p className="text-slate-400 text-base md:text-lg max-w-lg leading-relaxed font-light">
-              Sedang mencari developer untuk project atau bergabung ke tim kamu? Jangan ragu untuk menyapa. Saya selalu terbuka untuk peluang baru!
+              {lang === 'ID' 
+                ? 'Sedang mencari developer untuk project atau bergabung ke tim kamu? Jangan ragu untuk menyapa. Saya selalu terbuka untuk peluang baru!'
+                : 'Looking for a developer for your project or to join your team? Feel free to reach out. I am always open to new opportunities!'}
             </p>
             <div className="pt-2">
               <a 
                 href="mailto:hendrikarestu2003@gmail.com" 
                 className="inline-flex items-center justify-center px-7 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.25)] hover:shadow-[0_4px_30px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 active:translate-y-0 group"
               >
-                Kirim Email 
+                {lang === 'ID' ? 'Kirim Email' : 'Send Email'} 
                 <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </div>
           </div>
 
-          {/* Kolom Kanan: Grid Sosial Media */}
+          {/* Kolom Ranan: Grid Sosial Media */}
           <div className="md:col-span-5 flex flex-col items-center md:items-end gap-4">
-            <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase">Connect with me</span>
+            <span className="text-xs font-semibold tracking-widest text-slate-500 uppercase">
+              {lang === 'ID' ? 'Hubungi saya' : 'Connect with me'}
+            </span>
             <div className="grid grid-cols-3 gap-3.5">
               {socials.map((social, index) => (
                 <a
