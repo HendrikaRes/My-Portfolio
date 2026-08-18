@@ -1,1 +1,129 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #030712;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* React Bits: Shiny Text Animation */
+@keyframes shiny-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-shiny-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #93c5fd 25%,
+    #38bdf8 50%,
+    #93c5fd 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shiny-text 6s ease-in-out infinite;
+}
+
+/* React Bits: Shimmer Badge & Border Beam */
+@keyframes border-beam {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* Glassmorphism & High-End Card Containers */
+.glass-card {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.glass-card-interactive {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-interactive:hover {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+}
+
+/* Subtle Matrix Grid Texture */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Luxury Glow Orbs */
+.glow-orb-blue {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 70%);
+}
+
+.glow-orb-cyan {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, rgba(14, 165, 233, 0.03) 50%, transparent 70%);
+}
+
+.glow-orb-emerald {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #030712;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

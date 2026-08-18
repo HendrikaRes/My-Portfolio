@@ -1,295 +1,426 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, ChevronDown, FolderGit2, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
 const projectsData = {
   ID: [
     {
       "id": 1,
+      "category": "WEB",
       "title": "Tech Desa",
+      "subtitle": "Marketplace Jasa Teknologi & Digitalisasi UMKM",
       "desc": "Platform marketplace penyedia jasa teknologi pribadi, seperti pembuatan website kustom (profil sekolah/perusahaan, landing page, e-commerce) dan aplikasi web interaktif, yang dirancang untuk mendigitalisasi UMKM lokal.",
       "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
       "image": "/dokumentasi/techdesa.JPG",
       "githubLink": "#",
-      "liveLink": "https://techdesa.my.id/"
+      "liveLink": "https://techdesa.my.id/",
+      "badge": "Live Production"
     },
     {
       "id": 2,
+      "category": "ENTERPRISE",
       "title": "Overtime Order System (SPL)",
+      "subtitle": "Sistem Surat Perintah Lembur dengan QR Signature",
       "desc": "Sistem otomatisasi lembur terintegrasi yang dilengkapi dengan Tanda Tangan Digital berbasis QR Code. Dikembangkan menggunakan metodologi Agile dan framework Laravel untuk mengoptimalkan efisiensi administratif perusahaan.",
-      "tech": ["Laravel", "PostgreSQL", "QR Code"],
+      "tech": ["Laravel", "PostgreSQL", "QR Code", "Agile"],
       "image": "/dokumentasi/spl.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Hak Cipta HKI"
     },
     {
       "id": 3,
+      "category": "WEB",
       "title": "Medipluse",
+      "subtitle": "Platform Manajemen Kesehatan & Pengingat Obat",
       "desc": "Proyek kolaboratif capstone untuk program MSIB Batch 7 di Rakamin Academy, dikembangkan sebagai Full Stack Developer. Aplikasi ini mendigitalisasi dan mengintegrasikan manajemen kesehatan pribadi dengan pengingat obat otomatis.",
       "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
       "image": "/dokumentasi/digi.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "MSIB Capstone"
     },
     {
       "id": 4,
-      "title": "SIMPG (Pura Engineering Management Information System)",
+      "category": "ENTERPRISE",
+      "title": "SIMPG (Pura Engineering Management)",
+      "subtitle": "Sistem Informasi Manajemen Logistik & Operasional",
       "desc": "Sistem informasi internal terintegrasi yang dirancang untuk mendigitalisasi, memantau, dan mengotomatisasi manajemen operasional, administrasi, dan pelaporan data dalam Divisi Engineering PT. Pura Barutama.",
       "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
       "image": "/dokumentasi/simpg.webp",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Enterprise MIS"
     },
     {
       "id": 5,
+      "category": "WEB",
       "title": "Digishelf",
+      "subtitle": "Sistem Manajemen Perpustakaan Terintegrasi",
       "desc": "Sistem manajemen perpustakaan modern yang dikembangkan untuk mengoptimalkan katalogisasi buku, melacak riwayat sirkulasi dan peminjaman, serta mengelola data anggota secara real-time.",
-      "tech": ["Laravel", "Tailwind", "MySQL"],
+      "tech": ["Laravel", "Tailwind CSS", "MySQL"],
       "image": "/dokumentasi/perpus.png",
       "githubLink": "https://github.com/HendrikaRes/DigiShelf_",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Open Source"
     },
     {
       "id": 6,
-      "title": "Employee E-Attendance (QR Code)",
+      "category": "ENTERPRISE",
+      "title": "Employee E-Attendance",
+      "subtitle": "Presensi Karyawan Otomatis Berbasis QR Code",
       "desc": "Sistem manajemen kehadiran karyawan otomatis yang terintegrasi dengan tanda tangan QR Code untuk meningkatkan efisiensi pencatatan, mengeliminasi penggunaan kertas manual, dan memperkuat keamanan pelacakan data.",
       "tech": ["Laravel", "MySQL", "Bootstrap"],
       "image": "/dokumentasi/abs.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Automated QR"
     },
     {
       "id": 7,
-      "title": "Maintenix - Smart Mobile Maintenance Application",
+      "category": "AI_IOT",
+      "title": "Maintenix - Smart Mobile Maintenance",
+      "subtitle": "Aplikasi Pemeliharaan Mesin Cerdas IoT & ML",
       "desc": "Aplikasi pemeliharaan seluler cerdas yang dilengkapi dengan fitur klasifikasi kerusakan otomatis yang menganalisis suhu mesin, RPM, dan tegangan untuk memprediksi serta mengidentifikasi kerusakan secara real-time.",
       "tech": ["Flutter", "Python", "PostgreSQL"],
       "image": "/dokumentasi/mesin.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Smart Mobile IoT"
     },
     {
       "id": 8,
+      "category": "AI_IOT",
       "title": "Plantix - Rice Leaf Disease Classifier",
+      "subtitle": "Deteksi Penyakit Daun Padi Berbasis Deep Learning",
       "desc": "Aplikasi web klasifikasi penyakit tanaman padi berbasis kecerdasan buatan (AI) menggunakan algoritma deep learning. Pengguna cukup mengunggah foto daun padi untuk mendeteksi secara instan apakah padi tersebut sehat atau terkena penyakit (seperti Blas, Hawar Daun Bakteri, atau Tungro).",
       "tech": ["Python", "TensorFlow", "React.js", "FastAPI", "Tailwind CSS"],
       "image": "/dokumentasi/plantix.jpg",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Deep Learning AI"
     }
   ],
   EN: [
     {
       "id": 1,
+      "category": "WEB",
       "title": "Tech Desa",
+      "subtitle": "MSME Digitalization & Tech Services Marketplace",
       "desc": "A personal technology services marketplace platform offering custom website development (school/company profiles, landing pages, e-commerce) and interactive web applications designed to digitize local MSMEs.",
       "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
       "image": "/dokumentasi/techdesa.JPG",
       "githubLink": "#",
-      "liveLink": "https://techdesa.my.id/"
+      "liveLink": "https://techdesa.my.id/",
+      "badge": "Live Production"
     },
     {
       "id": 2,
+      "category": "ENTERPRISE",
       "title": "Overtime Order System (SPL)",
+      "subtitle": "Overtime Automation with QR Digital Signatures",
       "desc": "An integrated overtime automation system featuring QR Code-based Digital Signatures. Developed using the Agile methodology and Laravel framework to optimize corporate administrative efficiency.",
-      "tech": ["Laravel", "PostgreSQL", "QR Code"],
+      "tech": ["Laravel", "PostgreSQL", "QR Code", "Agile"],
       "image": "/dokumentasi/spl.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "IP Certified"
     },
     {
       "id": 3,
+      "category": "WEB",
       "title": "Medipluse",
+      "subtitle": "Healthcare Management & Medication Reminder Platform",
       "desc": "A collaborative capstone project for the MSIB Batch 7 program at Rakamin Academy, developed as a Full Stack Developer. This application digitizes and integrates personal healthcare management with automated medication reminders.",
       "tech": ["Laravel", "MySQL", "Bootstrap", "API Integration", "Python"],
       "image": "/dokumentasi/digi.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "MSIB Capstone"
     },
     {
       "id": 4,
-      "title": "SIMPG (Pura Engineering Management Information System)",
+      "category": "ENTERPRISE",
+      "title": "SIMPG (Pura Engineering Management)",
+      "subtitle": "Logistics Management & Operational Information System",
       "desc": "An integrated internal information system designed to digitize, monitor, and automate operational management, administration, and data reporting within the Engineering Division of PT. Pura Barutama.",
       "tech": ["Laravel", "PostgreSQL", "Bootstrap", "jQuery"],
       "image": "/dokumentasi/simpg.webp",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Enterprise MIS"
     },
     {
       "id": 5,
+      "category": "WEB",
       "title": "Digishelf",
+      "subtitle": "Modern Library Information & Cataloging System",
       "desc": "A modern library management system developed to optimize book cataloging, track circulation and borrowing history, and manage member data in real-time.",
-      "tech": ["Laravel", "Tailwind", "MySQL"],
+      "tech": ["Laravel", "Tailwind CSS", "MySQL"],
       "image": "/dokumentasi/perpus.png",
       "githubLink": "https://github.com/HendrikaRes/DigiShelf_",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Open Source"
     },
     {
       "id": 6,
-      "title": "Employee E-Attendance (QR Code)",
+      "category": "ENTERPRISE",
+      "title": "Employee E-Attendance",
+      "subtitle": "Automated Workforce Attendance via QR Signatures",
       "desc": "An automated employee attendance management system integrated with QR Code signatures to improve checking efficiency, eliminate manual paperwork, and enhance data tracking security.",
       "tech": ["Laravel", "MySQL", "Bootstrap"],
       "image": "/dokumentasi/abs.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Automated QR"
     },
     {
       "id": 7,
-      "title": "Maintenix - Smart Mobile Maintenance Application",
+      "category": "AI_IOT",
+      "title": "Maintenix - Smart Mobile Maintenance",
+      "subtitle": "Predictive Industrial Machine Diagnostic App",
       "desc": "A smart mobile maintenance application equipped with automated damage classification features that analyze machine temperature, RPM, and voltage to predict and identify faults in real-time.",
       "tech": ["Flutter", "Python", "PostgreSQL"],
       "image": "/dokumentasi/mesin.png",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Smart Mobile IoT"
     },
     {
       "id": 8,
+      "category": "AI_IOT",
       "title": "Plantix - Rice Leaf Disease Classifier",
+      "subtitle": "Deep Learning Agricultural Diagnostic Web App",
       "desc": "An AI-powered rice plant disease classification web application utilizing deep learning algorithms. Users upload photos of rice leaves to instantly detect whether the plant is healthy or infected with diseases (e.g., Blast, Bacterial Leaf Blight, or Tungro).",
       "tech": ["Python", "TensorFlow", "React.js", "FastAPI", "Tailwind CSS"],
       "image": "/dokumentasi/plantix.jpg",
       "githubLink": "#",
-      "liveLink": "#"
+      "liveLink": "#",
+      "badge": "Deep Learning AI"
     }
   ]
 };
 
 export default function Projects({ lang }) {
+  const [activeCategory, setActiveCategory] = useState('ALL');
   const [activeId, setActiveId] = useState(null);
 
   const toggleDropdown = (id) => {
     setActiveId(activeId === id ? null : id);
   };
 
+  const categories = [
+    { id: 'ALL', labelID: 'Semua Proyek', labelEN: 'All Projects' },
+    { id: 'ENTERPRISE', labelID: 'Sistem Enterprise', labelEN: 'Enterprise' },
+    { id: 'WEB', labelID: 'Aplikasi Web & SaaS', labelEN: 'Web Apps' },
+    { id: 'AI_IOT', labelID: 'AI & Smart Mobile', labelEN: 'AI & IoT' },
+  ];
+
   const projects = projectsData[lang];
+  const filteredProjects = activeCategory === 'ALL'
+    ? projects
+    : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-24 px-6 bg-slate-950 relative overflow-hidden">
-      {/* Ornamen Background */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <section id="projects" className="py-24 px-4 sm:px-6 bg-[#030712] relative overflow-hidden">
       
+      {/* Subtle Glow Backdrop */}
+      <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-              {lang === 'ID' ? (
-                <>
-                  Proyek <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">Unggulan</span>
-                </>
-              ) : (
-                <>
-                  Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-emerald-400">Projects</span>
-                </>
-              )}
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-3">
+              <Layers className="w-3.5 h-3.5" />
+              <span>{lang === 'ID' ? 'Koleksi Portofolio' : 'Featured Work'}</span>
+            </div>
+
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight">
+              Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Projects & Systems</span>
             </h2>
-            <p className="text-slate-400 max-w-xl text-lg leading-relaxed">
-              {lang === 'ID' 
-                ? 'Kumpulan sistem yang telah saya kerjakan, dari otomatisasi kantor hingga integrasi dan manajemen data gudang.'
-                : 'A collection of systems I have developed, ranging from office automation to warehouse data integration and management.'}
+
+            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl font-light">
+              {lang === 'ID'
+                ? 'Kumpulan sistem yang telah saya kembangkan, mulai dari otomasi administratif internal kantor, AI diagnostics, hingga manajemen rantai pasok manufaktur.'
+                : 'A curated showcase of engineering applications, ranging from enterprise automation to AI-powered diagnostics and logistics systems.'}
             </p>
-          </motion.div>
-          
-          <motion.a 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            href="https://github.com/HendrikaRes" 
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-800/50 hover:bg-slate-700 text-white rounded-xl font-bold transition-all border border-slate-700 hover:border-slate-500 shadow-lg"
+          </div>
+
+          <a
+            href="https://github.com/HendrikaRes"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all self-start md:self-auto"
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" /></svg>
-            {lang === 'ID' ? 'Lihat GitHub' : 'View GitHub'}
-          </motion.a>
+            <FaGithub className="w-4 h-4" />
+            <span>{lang === 'ID' ? 'Lihat Semua di GitHub' : 'View Full GitHub Profile'}</span>
+          </a>
         </div>
 
-        {/* Grid Card Project */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
+                activeCategory === cat.id
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-500'
+                  : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-white/5 hover:border-white/10'
+              }`}
+            >
+              {lang === 'ID' ? cat.labelID : cat.labelEN}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Glass Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              key={project.id} 
-              className="bg-slate-900/80 backdrop-blur-sm border border-slate-800 rounded-[2rem] overflow-hidden hover:border-blue-500/50 transition-colors duration-500 flex flex-col shadow-2xl group"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group"
             >
-              {/* Gambar Project */}
-              <div className="relative overflow-hidden aspect-[4/3] border-b border-slate-800">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+              {/* Project Visual Thumbnail */}
+              <div className="relative overflow-hidden aspect-[16/10] bg-slate-950 border-b border-white/5">
+                <img
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Overlay Hitam Transparan saat Hover */}
-                <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <a href={project.githubLink} className="p-3 bg-slate-800 hover:bg-blue-600 rounded-full text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg" title="Lihat Source Code">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" /></svg>
-                  </a>
+                
+                {/* Floating Badge */}
+                <div className="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-medium text-cyan-400 px-2.5 py-1 rounded-full">
+                  {project.badge}
+                </div>
+
+                {/* Hover Links Overlay */}
+                <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                  {project.githubLink && project.githubLink !== "#" && (
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-3 bg-slate-900/90 hover:bg-blue-600 text-white border border-white/10 rounded-full transition-all duration-300 shadow-lg"
+                      title="GitHub Repository"
+                    >
+                      <FaGithub className="w-4 h-4" />
+                    </a>
+                  )}
                   {project.liveLink && project.liveLink !== "#" && (
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800 hover:bg-emerald-600 rounded-full text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg" title="Lihat Website Live">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-full transition-all duration-300 shadow-lg shadow-blue-500/30"
+                      title="Live Web Application"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
                 </div>
               </div>
 
-              {/* Konten Card */}
-              <div className="p-7 flex flex-col flex-grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((t, i) => (
-                    <span key={i} className="text-xs font-bold text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-md uppercase tracking-wider border border-blue-500/20">
-                      {t}
-                    </span>
-                  ))}
+              {/* Content Details */}
+              <div className="p-6 flex flex-col flex-grow justify-between">
+                <div>
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {project.tech.map((t, i) => (
+                      <span
+                        key={i}
+                        className="text-[10px] font-medium text-slate-400 bg-white/[0.04] border border-white/5 px-2.5 py-0.5 rounded-full"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h3 className="font-display font-bold text-lg text-white group-hover:text-blue-400 transition-colors leading-snug mb-1">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-400 font-light mb-3">
+                    {project.subtitle}
+                  </p>
+
+                  {/* Direct Action Buttons (Always Visible on Mobile & Desktop) */}
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    {project.liveLink && project.liveLink !== "#" && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-500/20 transition-all active:scale-95"
+                      >
+                        <span>{lang === 'ID' ? 'Lihat Demo' : 'Live Demo'}</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+
+                    {project.githubLink && project.githubLink !== "#" && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700 border border-white/5 transition-all active:scale-95"
+                      >
+                        <FaGithub className="w-3.5 h-3.5" />
+                        <span>Source Code</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 leading-tight">{project.title}</h3>
-
-                <div className="mt-auto">
-                  {/* Dropdown Toggle */}
-                  <button 
+                {/* Expandable Overview Accordion */}
+                <div className="mt-4 pt-3 border-t border-white/5">
+                  <button
                     onClick={() => toggleDropdown(project.id)}
-                    className="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-blue-400 transition-colors w-full focus:outline-none cursor-pointer"
+                    className="flex items-center justify-between w-full text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
                   >
-                    {activeId === project.id 
-                      ? (lang === 'ID' ? 'Sembunyikan Detail' : 'Hide Details') 
-                      : (lang === 'ID' ? 'Baca Selengkapnya' : 'Read More')}
-                    <motion.svg 
-                      animate={{ rotate: activeId === project.id ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </motion.svg>
+                    <span>
+                      {activeId === project.id
+                        ? (lang === 'ID' ? 'Tutup Detail' : 'Hide Overview')
+                        : (lang === 'ID' ? 'Lihat Detail Proyek' : 'View System Details')}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                        activeId === project.id ? 'rotate-180 text-blue-400' : ''
+                      }`}
+                    />
                   </button>
 
-                  {/* Konten Deskripsi */}
                   <AnimatePresence>
                     {activeId === project.id && (
                       <motion.div
                         initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                        animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                        animate={{ height: "auto", opacity: 1, marginTop: 10 }}
                         exit={{ height: 0, opacity: 0, marginTop: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-blue-500/50 pl-4 py-1 text-justify">
+                        <p className="text-slate-300 text-xs leading-relaxed text-justify bg-slate-900/60 p-3 rounded-xl border border-white/5 font-light">
                           {project.desc}
                         </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
+
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

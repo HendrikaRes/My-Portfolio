@@ -1,95 +1,96 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import { ArrowRight, FileText, Building2, CheckCircle2, Award, Calendar, Layers, ExternalLink, MapPin } from 'lucide-react';
+import Interactive3DOrb from './Interactive3DOrb';
+import LanyardIDCard from './LanyardIDCard';
 import CVModal from './CVModal';
 
-const timelineData = {
+const experiencesData = {
   ID: [
     {
-      month: "Maret 2025",
-      phase: "Fase 1: Onboarding & SIMPG",
-      title: "Adaptasi Database & Inisiasi SIMPG",
-      desc: "Melakukan adaptasi lingkungan kerja dan mempelajari struktur database internal perusahaan. Bergabung dengan tim EDP untuk pengerjaan <strong>SIMPG</strong> (berjalan setengah jalan) untuk alur Debit Barang Jadi, Input Manual Debit Barang Jadi Part & Komponen, serta Cetak Ulang LPB."
+      company: "PT Pura Barutama (Divisi Engineering)",
+      role: "Junior Web Developer (Magang)",
+      period: "Maret 2025 – September 2025",
+      location: "Kudus, Jawa Tengah",
+      badge: "Manufaktur & Enterprise",
+      points: [
+        "Pengembangan Fitur SIMPG: Menulis logika kueri dan alur Debit Barang Jadi, Input Manual Part & Komponen, serta modul Cetak Ulang LPB.",
+        "Web Report Platform: Membangun modul analitik Evapro Material By Order, Evapro Progress, dan visualisasi Jam Kerja Operator.",
+        "Dashboard Monitoring SIP: Merancang sistem monitoring logistik & status proses SIP secara terpusat.",
+        "Website SPL (Proyek Mandiri): Membangun Sistem Surat Perintah Lembur berbasis Laravel, PostgreSQL & QR Code (Hak Cipta HKI 2026).",
+        "Pengelolaan Database: Mengoptimalkan integrasi dan struktur data pada database PostgreSQL dan Oracle."
+      ],
+      skills: ["Laravel", "PostgreSQL", "Oracle", "JavaScript", "Bootstrap", "AJAX", "QR Code"]
     },
     {
-      month: "April 2025",
-      phase: "Fase 2: SIMPG Development",
-      title: "Pengembangan Fitur Input Logistik SIMPG",
-      desc: "Melanjutkan pengembangan backend sistem <strong>SIMPG</strong> dengan memfokuskan pengerjaan pada penulisan logika query database dan fungsi input manual Debit Barang Jadi Part dan Komponen secara terstruktur."
+      company: "Rakamin Academy (MSIB Kampus Merdeka Batch 7)",
+      role: "Full Stack Developer with Data Science",
+      period: "Agustus 2024 – Desember 2024",
+      location: "Jakarta (Remote)",
+      badge: "Studi Independen Bersertifikat",
+      points: [
+        "Capstone Project (Medipluse): Mengembangkan platform digital manajemen kesehatan pribadi dengan integrasi pengingat obat otomatis.",
+        "Full Stack Web Architecture: Membangun RESTful API menggunakan Laravel & MySQL serta antarmuka frontend interaktif.",
+        "Data Science Integration: Mempelajari manipulasi data Python, analisis data terstruktur, dan integrasi pipeline data ke aplikasi web."
+      ],
+      skills: ["Full Stack", "Laravel", "Python", "Data Science", "MySQL", "RESTful API", "Bootstrap"]
     },
     {
-      month: "Mei 2025",
-      phase: "Fase 3: Refinement SIMPG",
-      title: "Modul Cetak LPB & Pengujian Sistem",
-      desc: "Merampungkan pengerjaan modul Cetak Ulang LPB (Laporan Penerimaan Barang) pada SIMPG, melakukan integrasi data logistik internal divisi Engineering, serta menguji keandalan fungsionalitas sistem."
-    },
-    {
-      month: "Juni 2025",
-      phase: "Fase 4: Web Report - Evapro",
-      title: "Inisiasi Web Report & Modul Evapro",
-      desc: "Bergabung dengan tim proyek EDP untuk mulai mengembangkan platform <strong>Web Report</strong>. Melakukan pemrosesan data untuk menampilkan modul <em>Evapro Material By Order</em>, <em>Evapro Pengerjaan</em>, dan <em>Evapro Progress</em>."
-    },
-    {
-      month: "Juli 2025",
-      phase: "Fase 5: Web Report - SIP & Operator",
-      title: "Dashboard Monitoring SIP & Jam Kerja",
-      desc: "Melanjutkan pengembangan Web Report dengan membuat visualisasi data untuk modul <em>Monitoring SIP</em>, <em>Monitoring SIP Name</em>, <em>Monitoring SIP SUM</em>, serta modul rekapitulasi data <em>Jam Kerja By Operator</em>."
-    },
-    {
-      month: "Agustus 2025",
-      phase: "Fase 6: Proyek Mandiri",
-      title: "Pembangunan Web SPL & Integrasi Payroll",
-      desc: "Membangun proyek mandiri berupa website <strong>Sistem Surat Perintah Lembur (SPL)</strong> menggunakan database <strong>PostgreSQL</strong>. Mengintegrasikannya dengan database <strong>Payroll</strong> untuk otomatisasi penarikan nama karyawan secara dinamis."
-    },
-    {
-      month: "September 2025",
-      phase: "Fase 7: Handover Proyek",
-      title: "Pembangunan Monitoring SIP & Serah Terima",
-      desc: "Mengembangkan proyek <strong>Website Monitoring SIP</strong> secara menyeluruh, melakukan pengujian fungsionalitas sistem (testing), serta menyelesaikan serah terima (handover) dokumentasi teknis sistem kepada perusahaan."
+      company: "Multiteknik Pati",
+      role: "Mechanical Electronics (PKL)",
+      period: "Januari 2020 – Maret 2020",
+      location: "Pati, Jawa Tengah",
+      badge: "Praktek Kerja Lapangan",
+      points: [
+        "Memperoleh Sertifikat Praktek Kerja Lapangan dengan nilai rata-rata 80.",
+        "Melakukan perawatan dan perbaikan perangkat elektronik rumah tangga dan industri.",
+        "Melakukan rekapitulasi pelaporan pencatatan pendapatan harian bengkel."
+      ],
+      skills: ["Hardware Maintenance", "Troubleshooting", "Daily Reporting"]
     }
   ],
   EN: [
     {
-      month: "March 2025",
-      phase: "Phase 1: Onboarding & SIMPG",
-      title: "Database Adaptation & SIMPG Initiation",
-      desc: "Adapted to the workplace and studied the company's internal database structure. Joined the EDP team to continue developing <strong>SIMPG</strong> (already half-way), with an initial focus on the Finished Goods Debit, Manual Parts & Components Debit Entry, and LPB Reprinting features."
+      company: "PT Pura Barutama (Engineering Division)",
+      role: "Junior Web Developer (Internship)",
+      period: "March 2025 – September 2025",
+      location: "Kudus, Central Java",
+      badge: "Manufacturing & Enterprise",
+      points: [
+        "SIMPG Feature Development: Engineered backend query logic for Finished Goods Debit, Manual Parts Debit, and LPB Reprinting.",
+        "Web Report Platform: Built data analytics for Evapro Material By Order, Evapro Progress, and Operator Working Hours visualizations.",
+        "SIP Monitoring Dashboard: Designed centralized real-time dashboards for tracking logistics workflows and SIP status.",
+        "Web SPL (Independent): Architected the Overtime Order System with QR Code signatures via Laravel & PostgreSQL (IP Rights 2026).",
+        "Database Optimization: Managed query efficiency and relational data structures in PostgreSQL and Oracle."
+      ],
+      skills: ["Laravel", "PostgreSQL", "Oracle", "JavaScript", "Bootstrap", "AJAX", "QR Code"]
     },
     {
-      month: "April 2025",
-      phase: "Phase 2: SIMPG Development",
-      title: "SIMPG Logistics Input Development",
-      desc: "Continued developing the <strong>SIMPG</strong> backend system, focusing on database query logic and manual input functions for Finished Goods Parts & Components in a structured manner."
+      company: "Rakamin Academy (MSIB Kampus Merdeka Cohort 7)",
+      role: "Full Stack Developer with Data Science",
+      period: "August 2024 – December 2024",
+      location: "Jakarta (Remote)",
+      badge: "Certified Independent Study",
+      points: [
+        "Capstone Project (Medipluse): Engineered a personal healthcare management platform with automated medication schedule reminders.",
+        "Full Stack Web Architecture: Developed RESTful APIs using Laravel & MySQL combined with dynamic interactive user interfaces.",
+        "Data Science Integration: Explored Python data manipulation, exploratory data analysis, and integrating models with web platforms."
+      ],
+      skills: ["Full Stack", "Laravel", "Python", "Data Science", "MySQL", "RESTful API", "Bootstrap"]
     },
     {
-      month: "May 2025",
-      phase: "Phase 3: SIMPG Refinement",
-      title: "LPB Module & System Testing",
-      desc: "Finalized the LPB (Goods Receipt Report) Reprinting module in SIMPG, integrated internal logistics data for the Engineering division, and verified system reliability."
-    },
-    {
-      month: "June 2025",
-      phase: "Phase 4: Web Report - Evapro",
-      title: "Web Report Initiation & Evapro Modules",
-      desc: "Joined the EDP team to develop the <strong>Web Report</strong> platform. Processed logistics data to implement the <em>Evapro Material By Order</em>, <em>Evapro Pengerjaan</em>, and <em>Evapro Progress</em> modules."
-    },
-    {
-      month: "July 2025",
-      phase: "Phase 5: Web Report - SIP & Operator",
-      title: "SIP Monitoring Dashboard & Working Hours",
-      desc: "Continued Web Report development, building data visualizations for the <em>Monitoring SIP</em>, <em>Monitoring SIP Name</em>, <em>Monitoring SIP SUM</em>, and <em>Jam Kerja By Operator</em> modules."
-    },
-    {
-      month: "August 2025",
-      phase: "Phase 6: Independent Project",
-      title: "Web SPL Development & Payroll Integration",
-      desc: "Independently designed and built the web-based Overtime Order System (SPL) using <strong>PostgreSQL</strong>. Integrated the system with the **Payroll** database for dynamic employee name verification."
-    },
-    {
-      month: "September 2025",
-      phase: "Phase 7: Project Handover",
-      title: "Monitoring SIP Finalization & Handover",
-      desc: "Developed the Website Monitoring SIP project, executed complete system testing, and finalized technical handover and documentation to the company."
+      company: "Multiteknik Pati",
+      role: "Mechanical Electronics (Vocational Internship)",
+      period: "January 2020 – March 2020",
+      location: "Pati, Central Java",
+      badge: "Vocational Internship",
+      points: [
+        "Awarded Vocational Internship Certificate with an average grade of 80.",
+        "Conducted maintenance and diagnostics for household and industrial electronic equipment.",
+        "Managed daily income documentation and operations reporting."
+      ],
+      skills: ["Hardware Maintenance", "Troubleshooting", "Daily Reporting"]
     }
   ]
 };
@@ -97,8 +98,6 @@ const timelineData = {
 export default function Hero({ lang }) {
   const [isCVOpen, setIsCVOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isMouseMoved, setIsMouseMoved] = useState(false);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const internshipImages = [
     "/dokumentasi/pres.jpeg",
@@ -114,242 +113,297 @@ export default function Hero({ lang }) {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
-    if (!isMouseMoved) setIsMouseMoved(true);
   };
 
-  const handlePhotoMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
-    // Maksimal rotasi 15 derajat
-    const rX = -(mouseY / (height / 2)) * 15;
-    const rY = (mouseX / (width / 2)) * 15;
-    setTilt({ x: rX, y: rY });
-  };
-
-  const handlePhotoMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
+  const experiences = experiencesData[lang];
 
   return (
     <section 
       id="home" 
-      onMouseMove={handleMouseMove} 
-      className="pt-36 pb-12 px-6 bg-slate-950 overflow-hidden relative"
+      onMouseMove={handleMouseMove}
+      className="relative pt-32 sm:pt-40 pb-24 px-4 sm:px-6 bg-[#030712] overflow-hidden"
     >
-      {/* Background Grid & Interactive Spotlight Glow */}
+      {/* React Bits: Spotlight Glow Background */}
       <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-80"
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-70"
         style={{
           backgroundImage: `
-            radial-gradient(circle at ${isMouseMoved ? `${mousePos.x}px ${mousePos.y}px` : '50% 30%'}, rgba(59, 130, 246, 0.15) 0%, rgba(16, 185, 129, 0.05) 35%, transparent 65%),
+            radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59, 130, 246, 0.12), transparent 80%),
+            radial-gradient(800px circle at 80% 20%, rgba(6, 182, 212, 0.08), transparent 70%),
             linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
           `,
-          backgroundSize: '100% 100%, 45px 45px, 45px 45px',
-          WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
-          maskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+          backgroundSize: '100% 100%, 100% 100%, 48px 48px, 48px 48px',
+          WebkitMaskImage: 'radial-gradient(circle at 50% 40%, black 70%, transparent 100%)',
+          maskImage: 'radial-gradient(circle at 50% 40%, black 70%, transparent 100%)',
         }}
       />
 
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Kolom Teks */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex-1 text-center md:text-left order-2 md:order-1"
-        >
-          {/* Badge Kecil */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-6 animate-pulse hover:bg-blue-500/20 transition-colors cursor-default">
-            <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-            {lang === 'ID' ? 'Terbuka untuk Bekerja / Magang' : 'Open to Work / Internship'}
-          </div>
-
-          {/* Heading */}
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight text-white">
-            I am <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Hendrik</span>
-            <br />
-            <span className="text-4xl md:text-5xl text-slate-300 font-bold block mt-2 h-[60px]">
-              <TypeAnimation
-                sequence={[
-                  'Web Developer',
-                  2000,
-                  'Fullstack Developer',
-                  2000,
-                  'Laravel & React Expert',
-                  2000,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
-            </span>
-          </h1>
-
-          {/* Professional Description */}
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-slate-400 max-w-2xl mx-auto md:mx-0 mb-10 text-lg leading-relaxed text-justify sm:text-left"
-          >
-            {lang === 'ID' ? (
-              <>
-                Lulusan Sistem Informasi yang adaptif dengan antusiasme tinggi untuk mengeksplorasi teknologi baru. Berpengalaman dalam mengoptimalkan sistem internal yang efisien, mengkhususkan diri pada arsitektur Backend yang kokoh menggunakan <span className="text-slate-200 font-medium">Laravel</span> dan merancang antarmuka Frontend yang modern serta interaktif berbasis <span className="text-slate-200 font-medium">React.js</span>.
-              </>
-            ) : (
-              <>
-                An adaptable Information Systems graduate with a high enthusiasm for exploring new technologies. Experienced in optimizing efficient internal systems, specializing in robust Backend architecture using <span className="text-slate-200 font-medium">Laravel</span> and crafting modern, interactive Frontend interfaces built on <span className="text-slate-200 font-medium">React.js</span>.
-              </>
-            )}
-          </motion.p>
-
-          {/* Tombol Aksi */}
+        {/* === HERO INTRO GRID === */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* LEFT COLUMN: Executive Bio & CTAs */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="flex flex-wrap justify-center md:justify-start gap-4"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col items-start"
           >
-            <a href="#projects" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] active:scale-95 flex items-center gap-2 group">
-              {lang === 'ID' ? 'Lihat Karya Saya' : 'Explore My Work'}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
-            <button 
-              onClick={() => setIsCVOpen(true)}
-              className="bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-slate-700 px-8 py-3.5 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(15,23,42,0.3)] active:scale-95 flex items-center gap-2 cursor-pointer"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              {lang === 'ID' ? 'Lihat CV' : 'View CV'}
-            </button>
-          </motion.div>
-        </motion.div>
+            {/* Status Pill Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-slate-300 text-xs font-medium mb-6 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{lang === 'ID' ? 'Terbuka untuk Peluang Kerja / Proyek' : 'Available for Full-time & Projects'}</span>
+            </div>
 
-        {/* Kolom Gambar Profil */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex-1 order-1 md:order-2 flex justify-center md:justify-end"
-        >
-          <motion.div 
-            animate={{ y: [0, -15, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="relative"
-          >
-            <motion.div
-              onMouseMove={handlePhotoMouseMove}
-              onMouseLeave={handlePhotoMouseLeave}
-              animate={{ 
-                rotateX: tilt.x, 
-                rotateY: tilt.y,
-              }}
-              style={{ transformPerspective: 1000 }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative group cursor-grab active:cursor-grabbing"
-            >
-              {/* Rotating outer rings */}
-              <div className="absolute -inset-4 rounded-full border border-dashed border-blue-500/30 group-hover:border-blue-500/60 animate-[spin_40s_linear_infinite] pointer-events-none" />
-              <div className="absolute -inset-8 rounded-full border border-dotted border-emerald-500/20 group-hover:border-emerald-500/40 animate-[spin_60s_linear_infinite_reverse] pointer-events-none" />
-              
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              
-              <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-slate-800 shadow-2xl shadow-blue-500/20 group-hover:border-blue-500/50 transition-colors duration-500">
-                <img 
-                  src="img/pp12.webp" 
-                  alt="Hendrik - Fullstack Developer" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+            {/* Main Headline */}
+            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.15] mb-4">
+              {lang === 'ID' ? 'Halo, Saya ' : "Hi, I'm "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400">
+                Hendrika Restu
+              </span>
+              <br />
+              <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-300 block mt-2 h-[48px] sm:h-[54px]">
+                <TypeAnimation
+                  sequence={[
+                    'Fullstack Developer',
+                    2200,
+                    'Laravel & React Specialist',
+                    2200,
+                    'Information Systems Analyst',
+                    2200,
+                    'Database & API Architect',
+                    2200,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
                 />
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
+              </span>
+            </h1>
 
-      {/* --- TIMELINE MAGANG --- */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="mt-36 w-full relative"
-      >
-        <div className="text-center mb-16 flex flex-col items-center">
-          <div className="px-4 py-1.5 text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3 uppercase tracking-wider">
-            {lang === 'ID' ? 'Laporan Aktivitas Magang' : 'Internship Activity Report'}
-          </div>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-white">
-            PT. Pura Barutama
-          </h3>
-          <p className="text-slate-400 text-sm md:text-base mt-2 max-w-xl">
-            {lang === 'ID' 
-              ? 'Junior Web Developer — Divisi Engineering (Maret 2025 – September 2025)' 
-              : 'Junior Web Developer — Engineering Division (March 2025 – September 2025)'}
-          </p>
-        </div>
+            {/* Description */}
+            <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-light text-justify sm:text-left">
+              {lang === 'ID' ? (
+                <>
+                  Lulusan <strong className="text-slate-200 font-semibold">S1 Sistem Informasi (IPK 3.94)</strong> yang adaptif dengan spesialisasi arsitektur Backend <strong className="text-slate-200 font-semibold">Laravel</strong> yang kokoh serta antarmuka modern interaktif berbasis <strong className="text-slate-200 font-semibold">React.js</strong>. Terbukti berpengalaman mengoptimalkan sistem internal divisi Engineering manufaktur dan alur logistik enterprise.
+                </>
+              ) : (
+                <>
+                  An adaptable <strong className="text-slate-200 font-semibold">Information Systems Graduate (GPA 3.94)</strong> specializing in robust <strong className="text-slate-200 font-semibold">Laravel</strong> backend architecture and dynamic <strong className="text-slate-200 font-semibold">React.js</strong> user interfaces. Proven track record optimizing manufacturing engineering systems and enterprise logistics pipelines.
+                </>
+              )}
+            </p>
 
-        {/* Timeline Bulanan */}
-        <div className="max-w-3xl mx-auto mb-20 px-4 relative border-l-2 border-slate-800/80 ml-6 md:mx-auto">
-          {timelineData[lang].map((item, index) => (
-            <div key={index} className={`relative pl-8 ${index < timelineData[lang].length - 1 ? 'pb-10' : ''} group`}>
-              {/* Dot */}
-              <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-500 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0)] group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
-              
-              <div className="bg-slate-900/30 hover:bg-slate-900/50 border border-slate-800/80 hover:border-blue-500/20 rounded-2xl p-5 transition-all duration-300">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded border border-blue-500/20 uppercase tracking-wider">
-                    {item.month}
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">{item.phase}</span>
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto">
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-[0_0_25px_rgba(37,99,235,0.35)] hover:shadow-[0_0_35px_rgba(37,99,235,0.55)] active:scale-98"
+              >
+                <span>{lang === 'ID' ? 'Lihat Portofolio Proyek' : 'Explore Portfolio'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <button
+                onClick={() => setIsCVOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all duration-300 shadow-sm active:scale-98 cursor-pointer"
+              >
+                <FileText className="w-4 h-4 text-blue-400" />
+                <span>{lang === 'ID' ? 'Curriculum Vitae' : 'View Executive CV'}</span>
+              </button>
+            </div>
+
+            {/* Quick Metrics Bento Pills */}
+            <div className="grid grid-cols-3 gap-3 w-full max-w-lg mt-10 pt-8 border-t border-slate-800/80">
+              <div className="glass-card-interactive p-3 rounded-2xl">
+                <div className="font-display font-bold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                  3.94
                 </div>
-                <h4 className="text-base font-bold text-white mb-1">{item.title}</h4>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed text-justify" dangerouslySetInnerHTML={{ __html: item.desc }}></p>
+                <div className="text-[11px] text-slate-400 font-medium mt-0.5">
+                  {lang === 'ID' ? 'IPK UMK (Cum Laude)' : 'GPA / 4.00 (UMK)'}
+                </div>
+              </div>
+
+              <div className="glass-card-interactive p-3 rounded-2xl">
+                <div className="font-display font-bold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+                  8+
+                </div>
+                <div className="text-[11px] text-slate-400 font-medium mt-0.5">
+                  {lang === 'ID' ? 'Proyek & Sistem Web' : 'Completed Systems'}
+                </div>
+              </div>
+
+              <div className="glass-card-interactive p-3 rounded-2xl">
+                <div className="font-display font-bold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                  HKI
+                </div>
+                <div className="text-[11px] text-slate-400 font-medium mt-0.5">
+                  {lang === 'ID' ? 'Hak Cipta Web SPL' : 'IP Rights Certified'}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Photo Slider */}
-        <div className="relative w-full overflow-hidden flex">
-          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none"></div>
-
-          <motion.div
-            className="flex gap-4 md:gap-6 w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ 
-              repeat: Infinity, 
-              ease: "linear", 
-              duration: 25 
-            }}
-          >
-            {[...internshipImages, ...internshipImages].map((img, index) => (
-              <div 
-                key={index} 
-                className="w-[260px] h-[160px] md:w-[350px] md:h-[220px] rounded-2xl overflow-hidden flex-shrink-0 border border-slate-800/80 group cursor-pointer"
-              >
-                <img 
-                  src={img} 
-                  alt={`Internship Documentation ${index + 1}`} 
-                  className="w-full h-full object-cover transition-all duration-500 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110" 
-                />
-              </div>
-            ))}
           </motion.div>
-        </div>
-      </motion.div>
 
-      {/* Modal CV */}
+          {/* RIGHT COLUMN: 3D Holographic Constellation & Profile Visual */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col items-center justify-center relative min-h-[460px]"
+          >
+            <div className="relative w-full max-w-[420px] flex items-center justify-center">
+              
+              {/* Radial backdrop glow */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-cyan-500/10 to-indigo-600/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+              {/* Three.js Interactive Constellation Canvas in Background */}
+              <Interactive3DOrb className="absolute inset-0 w-full h-full -z-5 pointer-events-none opacity-60" />
+
+              {/* Physical Lanyard ID Card (Drops down & swings from top) */}
+              <LanyardIDCard lang={lang} />
+
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* === SECTION: PROFESSIONAL EXPERIENCE & MSIB TRAJECTORY === */}
+        <div id="experience" className="mt-32 pt-16 border-t border-slate-800/80">
+          
+          {/* Section Header */}
+          <div className="flex flex-col items-center text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-3">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>{lang === 'ID' ? 'Pengalaman Profesional' : 'Professional Experience'}</span>
+            </div>
+
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight">
+              Career & Internship <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Trajectory</span>
+            </h2>
+
+            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl font-light">
+              {lang === 'ID'
+                ? 'Ringkasan pengalaman kerja industri dan program studi independen bersertifikat yang pernah saya jalani.'
+                : 'Summary of my industry internships and certified independent study programs.'}
+            </p>
+          </div>
+
+          {/* Structured Experience List Cards */}
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden group"
+              >
+                {/* Header Row */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 border-b border-white/5">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
+                      <h3 className="font-display font-bold text-lg sm:text-xl text-white group-hover:text-blue-400 transition-colors">
+                        {exp.company}
+                      </h3>
+                      <span className="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-0.5 rounded-full">
+                        {exp.badge}
+                      </span>
+                    </div>
+
+                    <div className="text-sm font-semibold text-blue-400">
+                      {exp.role}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col md:items-end gap-1 text-xs text-slate-400 font-medium">
+                    <span className="flex items-center gap-1.5 text-slate-300">
+                      <Calendar className="w-3.5 h-3.5 text-blue-400" />
+                      {exp.period}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-slate-500">
+                      <MapPin className="w-3.5 h-3.5" />
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Concise Bullet Points List */}
+                <div className="pt-5">
+                  <ul className="space-y-2.5 text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+                    {exp.points.map((point, pIndex) => (
+                      <li key={pIndex} className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Skills Chips */}
+                  <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-white/5">
+                    {exp.skills.map((skill, sIndex) => (
+                      <span
+                        key={sIndex}
+                        className="text-[10px] font-medium text-slate-400 bg-white/[0.03] border border-white/5 px-2.5 py-0.5 rounded-md"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Photo Carousel */}
+          <div className="mt-14 relative">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                <Layers className="w-3.5 h-3.5 text-blue-400" />
+                {lang === 'ID' ? 'Dokumentasi Aktivitas Lapangan' : 'Field Activity Documentation'}
+              </span>
+            </div>
+
+            <div className="relative w-full overflow-hidden rounded-2xl bg-slate-950/60 border border-white/5 py-4">
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 bg-gradient-to-r from-[#030712] to-transparent pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 bg-gradient-to-l from-[#030712] to-transparent pointer-events-none"></div>
+
+              <motion.div
+                className="flex gap-4 sm:gap-6 w-max px-4"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+              >
+                {[...internshipImages, ...internshipImages].map((img, index) => (
+                  <div
+                    key={index}
+                    className="w-[260px] h-[160px] sm:w-[320px] sm:h-[200px] rounded-xl overflow-hidden flex-shrink-0 border border-white/10 relative group cursor-pointer"
+                  >
+                    <img
+                      src={img}
+                      alt={`Dokumentasi Magang ${index + 1}`}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition-colors"></div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* CV Modal Component */}
       <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} />
+
     </section>
   );
 }

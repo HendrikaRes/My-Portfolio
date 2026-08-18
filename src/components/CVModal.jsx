@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPrint, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGlobe } from 'react-icons/fa';
+import { Printer, X, Mail, Phone, MapPin, Globe, Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 const cvData = {
   ID: {
@@ -10,22 +10,33 @@ const cvData = {
     phone: "087-8297-132-77",
     email: "hendrikarestu2003@gmail.com",
     website: "https://hendrika-portfolio.vercel.app/",
-    summary: "Lulusan Sistem Informasi, keahlian komprehensif di bidang pengembangan web dan tata kelola administrasi. Terampil dalam analisis sistem, pengelolaan database, serta pengolahan laporan menggunakan Microsoft Excel. Memiliki minat besar pada bagaimana teknologi dapat menyederhanakan proses kerja. Fokus saya tidak hanya pada pengembangan IT, melainkan juga pada bidang administrasi dan manajemen operasional. Berbekal kemampuan adaptasi yang cepat dan kemauan belajar yang tinggi.",
-    experienceTitle: "Pengalaman",
-    educationTitle: "Pendidikan",
-    orgTitle: "Organisasi / Kegiatan",
-    certTitle: "Sertifikasi",
-    skillsTitle: "Kemampuan",
+    summary: "Lulusan Sistem Informasi dengan keahlian komprehensif di bidang pengembangan web dan tata kelola administrasi. Terampil dalam analisis sistem, pengelolaan database, serta pengolahan laporan menggunakan Microsoft Excel. Memiliki minat besar pada bagaimana teknologi dapat menyederhanakan proses kerja. Fokus saya tidak hanya pada pengembangan IT, melainkan juga pada bidang administrasi dan manajemen operasional. Berbekal kemampuan adaptasi yang cepat dan kemauan belajar yang tinggi.",
+    experienceTitle: "Pengalaman Kerja / Magang",
+    educationTitle: "Riwayat Pendidikan",
+    orgTitle: "Organisasi & Aktivitas",
+    certTitle: "Sertifikasi & Lisensi",
+    skillsTitle: "Kemampuan & Bahasa",
     experiences: [
       {
         role: "Junior Web Developer (Magang)",
         company: "PT Pura Barutama Engineering – Kudus, Jawa Tengah",
         date: "Maret 2025 – September 2025",
         bullets: [
-          "Mengembangkan Fitur sistem <strong>SIMPG</strong> seperti Debit Barang Jadi, Input Manual Debit Barang jadi Part dan Komponen, Cetak Ulang LPB.",
-          "Mengelola dan mengolah data menggunakan database PostgreSQL dan Oracle.",
-          "Membantu membuat tampilan antarmuka (UI) website agar lebih mudah digunakan pengguna.",
-          "Menggunakan framework Laravel serta teknologi web seperti HTML, CSS, JavaScript, Bootstrap, dan AJAX dalam proses pengembangan aplikasi berbasis website <strong>Sistem Surat Perintah Lembur (SPL)</strong> dengan otomatisasi tanda tangan digital berbasis QR Code dan <strong>Website Monitoring SIP</strong>."
+          "Mengembangkan modul sistem <strong>SIMPG</strong>: Debit Barang Jadi, Input Manual Debit Barang Jadi Part & Komponen, dan Cetak Ulang LPB.",
+          "Membangun modul analitik data <strong>Web Report</strong> (Evapro Material, Progress) serta visualisasi Jam Kerja Operator.",
+          "Merancang <strong>Website Monitoring SIP</strong> dan integrasi data logistik real-time.",
+          "Membangun <strong>Sistem Surat Perintah Lembur (SPL)</strong> berbasis Laravel, PostgreSQL & QR Code (Hak Cipta HKI).",
+          "Mengelola dan mengoptimalkan relasi database enterprise PostgreSQL dan Oracle."
+        ]
+      },
+      {
+        role: "Full Stack Developer with Data Science (MSIB Kampus Merdeka Batch 7)",
+        company: "Rakamin Academy – Jakarta (Remote)",
+        date: "Agustus 2024 – Desember 2024",
+        bullets: [
+          "Mengembangkan proyek capstone <strong>Medipluse</strong> (aplikasi web manajemen kesehatan pribadi & pengingat jadwal obat otomatis).",
+          "Merancang arsitektur backend RESTful API menggunakan Laravel & MySQL serta antarmuka web interaktif.",
+          "Mempelajari dasar analisis data, manipulasi data Python, dan integrasi pipeline data ke dalam aplikasi web."
         ]
       },
       {
@@ -34,8 +45,8 @@ const cvData = {
         date: "Januari 2020 – Maret 2020",
         bullets: [
           "Memperoleh Sertifikat Praktek Kerja Lapangan dengan nilai rata-rata 80.",
-          "Melakukan perawatan barang elektronik seperti AC, mesin cuci, kipas angin, dll.",
-          "Melaporkan Hasil pendapatan harian."
+          "Melakukan perawatan dan perbaikan perangkat elektronik rumah tangga dan komersial.",
+          "Mencatat dan melaporkan rekapitulasi pendapatan harian operasional."
         ]
       }
     ],
@@ -47,7 +58,7 @@ const cvData = {
         bullets: [
           "Lulus 3,5 tahun melalui 7 semester dengan perolehan <strong>IPK 3,94</strong>.",
           "Lolos dalam ujian Sertifikasi Microsoft Office Specialist.",
-          "Menjadi analisis sistem perancangan dan front end pembuatan Website tugas manajemen proyek.",
+          "Menjadi analis sistem perancangan dan front end pembuatan Website tugas manajemen proyek.",
           "Membuat perancangan sistem pada tugas analisis dan perancangan sistem Informasi.",
           "Membuat project akhir Website Pengingat Obat sebagai Quality Assurance.",
           "Menjadi narasumber Sharing MBKM Industri.",
@@ -102,9 +113,9 @@ const cvData = {
     website: "https://hendrika-portfolio.vercel.app/",
     summary: "Information Systems graduate with comprehensive expertise in web development and administrative governance. Skilled in systems analysis, database management, and data reporting using Microsoft Excel. Strongly interested in how technology can streamline workflows. Focuses not only on IT development but also on administration and operational management. Equipped with rapid adaptability and a strong desire to learn.",
     experienceTitle: "Professional Experience",
-    educationTitle: "Education",
+    educationTitle: "Education History",
     orgTitle: "Organizations & Activities",
-    certTitle: "Certifications",
+    certTitle: "Certifications & Licenses",
     skillsTitle: "Skills & Languages",
     experiences: [
       {
@@ -112,20 +123,31 @@ const cvData = {
         company: "PT Pura Barutama Engineering – Kudus, Central Java",
         date: "March 2025 – September 2025",
         bullets: [
-          "Developed features for the <strong>SIMPG</strong> system, including Finished Goods Debit, Manual Debit Input for Finished Goods Parts and Components, and LPB Reprinting.",
-          "Managed and processed data using PostgreSQL and Oracle databases.",
-          "Assisted in designing website user interfaces (UI) to improve user accessibility and experience.",
-          "Utilized Laravel framework and web technologies such as HTML, CSS, JavaScript, Bootstrap, and AJAX in developing the <strong>Sistem Surat Perintah Lembur (SPL)</strong> website-based application featuring QR Code-based digital signatures, as well as the <strong>SIP Monitoring Website</strong>."
+          "Developed core modules for <strong>SIMPG</strong>: Finished Goods Debit, Manual Parts & Components Debit Entry, and LPB Reprinting.",
+          "Engineered <strong>Web Report</strong> platform analytics (Evapro Material & Progress) and visual tracking for Operator Working Hours.",
+          "Designed and deployed the <strong>SIP Monitoring Website</strong> for real-time logistics oversight.",
+          "Architected the <strong>Overtime Order System (SPL)</strong> with QR Code digital signatures via Laravel & PostgreSQL (IP Rights Certified).",
+          "Managed enterprise relational database structures and queries in PostgreSQL and Oracle."
         ]
       },
       {
-        role: "Mechanical Electronics (Vocational Internship / PKL)",
+        role: "Full Stack Developer with Data Science (MSIB Kampus Merdeka Cohort 7)",
+        company: "Rakamin Academy – Jakarta (Remote)",
+        date: "August 2024 – December 2024",
+        bullets: [
+          "Engineered the capstone project <strong>Medipluse</strong> (personal healthcare management web platform with automated medication reminders).",
+          "Architected backend RESTful APIs with Laravel & MySQL combined with dynamic interactive user interfaces.",
+          "Explored data analytics fundamentals, Python data manipulation, and integrating data models with web applications."
+        ]
+      },
+      {
+        role: "Mechanical Electronics (Vocational Internship)",
         company: "Multiteknik Pati – Pati, Central Java",
         date: "January 2020 – March 2020",
         bullets: [
-          "Obtained a Vocational Internship Certificate with an average grade of 80.",
-          "Conducted maintenance for electronic appliances such as AC, washing machines, electric fans, etc.",
-          "Reported daily income records."
+          "Obtained Vocational Internship Certificate with an average grade of 80.",
+          "Conducted maintenance and troubleshooting for electronic appliances and hardware equipment.",
+          "Documented and reported daily operational income logs."
         ]
       }
     ],
@@ -199,14 +221,13 @@ export default function CVModal({ isOpen, onClose }) {
       alert("Gagal membuka jendela cetak. Pastikan browser Anda mengizinkan popup.");
       return;
     }
-    
+
     printWindow.document.open();
     printWindow.document.write(`
       <html>
         <head>
           <title>Curriculum Vitae - Hendrika Restu Prayoga</title>
           <style>
-            /* Reset stylesheet print A4 */
             html, body {
               background-color: white !important;
               color: #0f172a !important;
@@ -217,7 +238,7 @@ export default function CVModal({ isOpen, onClose }) {
             }
             body {
               font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-              padding: 40px;
+              padding: 30px;
             }
             #cv-print-area {
               border: none !important;
@@ -225,14 +246,12 @@ export default function CVModal({ isOpen, onClose }) {
               padding: 0 !important;
               margin: 0 !important;
               width: 100% !important;
-              max-width: 100% !important;
               background: white !important;
               color: #0f172a !important;
             }
-            /* Menghilangkan link URL default browser di footer/header halaman */
             @page {
-              size: auto;
-              margin: 20mm 15mm 20mm 15mm;
+              size: A4;
+              margin: 15mm 15mm 15mm 15mm;
             }
             @media print {
               body {
@@ -243,7 +262,6 @@ export default function CVModal({ isOpen, onClose }) {
           </style>
     `);
 
-    // Copy stylesheet / style tags dari website utama ke jendela print agar styling class Tailwind tetap jalan
     const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'));
     styles.forEach(style => {
       printWindow.document.write(style.outerHTML);
@@ -252,12 +270,11 @@ export default function CVModal({ isOpen, onClose }) {
     printWindow.document.write(`
         </head>
         <body>
-          <div id="cv-print-area" class="w-full bg-white text-slate-900 font-sans leading-relaxed text-[13px] sm:text-[14px]">
+          <div id="cv-print-area" class="w-full bg-white text-slate-900 leading-relaxed text-[13px]">
             ${printContent}
           </div>
           <script>
             window.addEventListener('load', () => {
-              // Beri jeda sedikit agar CSS sepenuhnya di-render browser
               setTimeout(() => {
                 window.print();
                 window.close();
@@ -273,106 +290,108 @@ export default function CVModal({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-2 sm:p-4 overflow-y-auto">
       
-      {/* Kontainer Modal */}
+      {/* Modal Container */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl flex flex-col max-h-[95vh] sm:max-h-[90vh]"
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-4xl bg-slate-900 border border-white/10 rounded-3xl shadow-2xl flex flex-col max-h-[92vh] overflow-hidden"
       >
-        
-        {/* Header Modal */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-b border-slate-800 bg-slate-900/90 rounded-t-3xl no-print">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-            <h3 className="font-bold text-white text-base sm:text-lg">Curriculum Vitae</h3>
+        {/* Header Ribbon */}
+        <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 bg-slate-950/80 border-b border-white/10 text-white">
+          <div className="flex items-center gap-2.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></div>
+            <h3 className="font-display font-semibold text-sm sm:text-base">
+              Curriculum Vitae • Hendrika Restu Prayoga
+            </h3>
           </div>
-          <div className="flex flex-wrap items-center justify-end gap-3 w-full sm:w-auto">
-            {/* Toggle Bahasa */}
-            <div className="flex bg-slate-950 rounded-xl p-1 border border-slate-850">
+
+          <div className="flex items-center gap-3">
+            {/* Lang toggle */}
+            <div className="flex bg-slate-900 p-0.5 rounded-full border border-white/10">
               <button
                 onClick={() => setLang('ID')}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  lang === 'ID'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-white'
+                className={`px-3 py-1 text-xs font-semibold rounded-full transition-all cursor-pointer ${
+                  lang === 'ID' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                ID (Bahasa)
+                ID
               </button>
               <button
                 onClick={() => setLang('EN')}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  lang === 'EN'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-white'
+                className={`px-3 py-1 text-xs font-semibold rounded-full transition-all cursor-pointer ${
+                  lang === 'EN' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                EN (English)
+                EN
               </button>
             </div>
 
-            {/* Tombol Print */}
+            {/* Print button */}
             <button
               onClick={handlePrint}
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-all shadow-md active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-md active:scale-95 cursor-pointer"
             >
-              <FaPrint className="w-3.5 h-3.5" />
-              Cetak / Simpan PDF
+              <Printer className="w-3.5 h-3.5" />
+              <span>Cetak / PDF</span>
             </button>
-            {/* Tombol Tutup */}
+
+            {/* Close button */}
             <button
               onClick={onClose}
-              className="p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors active:scale-95 cursor-pointer"
-              aria-label="Tutup"
+              className="p-1.5 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+              aria-label="Tutup Modal"
             >
-              <FaTimes className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Konten Kertas CV */}
-        <div className="p-2 sm:p-6 overflow-y-auto flex-1 bg-slate-950/40">
+        {/* Paper Document Container */}
+        <div className="p-3 sm:p-6 overflow-y-auto flex-1 bg-slate-950/40">
           
-          {/* Halaman Kertas CV (Mengikuti layout PDF asli) */}
+          {/* Printable White Paper CV */}
           <div
             id="cv-print-area"
-            className="w-full mx-auto max-w-[800px] bg-white text-slate-900 p-6 sm:p-10 md:p-12 shadow-xl rounded-xl border border-slate-200 font-sans leading-relaxed text-[13px] sm:text-[14px] select-text"
+            className="w-full mx-auto max-w-[800px] bg-white text-slate-900 p-6 sm:p-10 shadow-xl rounded-2xl border border-slate-200 font-sans leading-relaxed text-[13px] sm:text-[14px]"
           >
-            {/* --- HEADER (Nama, Kontak, dan Foto) --- */}
+            {/* Header / Info */}
             <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between gap-6 pb-6 border-b-2 border-slate-900">
               <div className="flex-1 text-center sm:text-left">
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-900 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-900 mb-1">
                   {currentData.title}
                 </h1>
+                <p className="text-blue-700 font-bold text-sm mb-3">
+                  {currentData.subtitle}
+                </p>
                 
-                <div className="flex flex-col gap-1.5 mt-3 text-slate-700 font-medium">
+                <div className="flex flex-col gap-1 text-slate-700 text-xs sm:text-sm font-medium">
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <FaPhone className="text-slate-500 w-3.5 h-3.5" />
+                    <Phone className="w-3.5 h-3.5 text-slate-500" />
                     <span>{currentData.phone}</span>
                   </div>
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <FaEnvelope className="text-slate-500 w-3.5 h-3.5" />
-                    <a href={`mailto:${currentData.email}`} className="hover:text-blue-700 hover:underline">
+                    <Mail className="w-3.5 h-3.5 text-slate-500" />
+                    <a href={`mailto:${currentData.email}`} className="text-blue-700 hover:underline">
                       {currentData.email}
                     </a>
                   </div>
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <FaMapMarkerAlt className="text-slate-500 w-3.5 h-3.5" />
+                    <MapPin className="w-3.5 h-3.5 text-slate-500" />
                     <span>{currentData.location}</span>
                   </div>
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <FaGlobe className="text-slate-500 w-3.5 h-3.5" />
-                    <a href={currentData.website} target="_blank" rel="noreferrer" className="hover:text-blue-700 hover:underline">
+                    <Globe className="w-3.5 h-3.5 text-slate-500" />
+                    <a href={currentData.website} target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">
                       {currentData.website}
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Pas Foto */}
-              <div className="w-28 h-36 sm:w-32 sm:h-40 border border-slate-350 shadow-md rounded overflow-hidden flex-shrink-0 bg-slate-100">
+              {/* Photo */}
+              <div className="w-28 h-36 sm:w-32 sm:h-40 border border-slate-300 shadow-md rounded-lg overflow-hidden flex-shrink-0 bg-slate-100">
                 <img
                   src="/img/Hendrika.jpg"
                   alt="Hendrika Restu Prayoga"
@@ -381,27 +400,26 @@ export default function CVModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* --- RINGKASAN --- */}
-            <div className="mt-5 text-justify text-slate-800">
+            {/* Summary */}
+            <div className="mt-5 text-justify text-slate-800 text-xs sm:text-sm">
               <p>{currentData.summary}</p>
             </div>
 
-            {/* --- PENGALAMAN --- */}
+            {/* Experience */}
             <div className="mt-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-0.5 mb-3">
+              <h2 className="text-sm sm:text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-1 mb-3">
                 {currentData.experienceTitle}
               </h2>
               
               {currentData.experiences.map((exp, index) => (
-                <div key={index} className={index < currentData.experiences.length - 1 ? "mb-5" : ""}>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center font-semibold text-slate-950">
-                    <h3 className="text-[14px] sm:text-[15px]">{exp.role}</h3>
-                    <span className="text-[12px] text-slate-600 font-normal">{exp.date}</span>
+                <div key={index} className={index < currentData.experiences.length - 1 ? "mb-4" : ""}>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center font-bold text-slate-950">
+                    <h3 className="text-[13px] sm:text-[14px]">{exp.role}</h3>
+                    <span className="text-[11px] sm:text-[12px] text-slate-600 font-normal">{exp.date}</span>
                   </div>
-                  <div className="italic text-slate-700 text-xs mt-0.5 mb-2">{exp.company}</div>
+                  <div className="italic text-slate-700 text-xs mt-0.5 mb-1.5">{exp.company}</div>
                   
-                  {/* Render bullet points */}
-                  <ul className="list-disc pl-5 space-y-1 text-slate-800 text-justify text-[13px]">
+                  <ul className="list-disc pl-5 space-y-1 text-slate-800 text-justify text-xs sm:text-sm">
                     {exp.bullets.map((bullet, bIndex) => (
                       <li key={bIndex} dangerouslySetInnerHTML={{ __html: bullet }}></li>
                     ))}
@@ -410,20 +428,20 @@ export default function CVModal({ isOpen, onClose }) {
               ))}
             </div>
 
-            {/* --- PENDIDIKAN --- */}
+            {/* Education */}
             <div className="mt-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-0.5 mb-3">
+              <h2 className="text-sm sm:text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-1 mb-3">
                 {currentData.educationTitle}
               </h2>
 
               {currentData.education.map((edu, index) => (
                 <div key={index} className={index < currentData.education.length - 1 ? "mb-4" : ""}>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center font-semibold text-slate-950">
-                    <h3 className="text-[14px] sm:text-[15px]">{edu.degree}</h3>
-                    <span className="text-[12px] text-slate-600 font-normal">{edu.date}</span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center font-bold text-slate-950">
+                    <h3 className="text-[13px] sm:text-[14px]">{edu.degree}</h3>
+                    <span className="text-[11px] sm:text-[12px] text-slate-600 font-normal">{edu.date}</span>
                   </div>
                   <div className="italic text-slate-700 text-xs mt-0.5 mb-1.5">{edu.school}</div>
-                  <ul className="list-disc pl-5 space-y-1 text-slate-800 text-justify">
+                  <ul className="list-disc pl-5 space-y-1 text-slate-800 text-justify text-xs sm:text-sm">
                     {edu.bullets.map((bullet, bIndex) => (
                       <li key={bIndex} dangerouslySetInnerHTML={{ __html: bullet }}></li>
                     ))}
@@ -432,56 +450,56 @@ export default function CVModal({ isOpen, onClose }) {
               ))}
             </div>
 
-            {/* --- ORGANISASI / KEGIATAN --- */}
+            {/* Organizations */}
             <div className="mt-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-0.5 mb-3">
+              <h2 className="text-sm sm:text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-1 mb-3">
                 {currentData.orgTitle}
               </h2>
-              <div className="space-y-1.5 text-slate-800">
+              <div className="space-y-1 text-slate-800 text-xs sm:text-sm">
                 {currentData.organizations.map((org, index) => (
-                  <div key={index} className="flex justify-between items-center text-[13px] sm:text-[14px]">
+                  <div key={index} className="flex justify-between items-center">
                     <span>{org.text}</span>
-                    <span className="font-semibold text-slate-700">{org.date}</span>
+                    <span className="font-semibold text-slate-700 ml-2">{org.date}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* --- SERTIFIKASI --- */}
+            {/* Certifications */}
             <div className="mt-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-0.5 mb-3">
+              <h2 className="text-sm sm:text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-1 mb-3">
                 {currentData.certTitle}
               </h2>
-              <div className="space-y-1.5 text-slate-800">
+              <div className="space-y-1 text-slate-800 text-xs sm:text-sm">
                 {currentData.certifications.map((cert, index) => (
-                  <div key={index} className="flex justify-between items-center text-[13px] sm:text-[14px]">
+                  <div key={index} className="flex justify-between items-center">
                     <span>{cert.text}</span>
-                    <span className="font-semibold text-slate-700">{cert.date}</span>
+                    <span className="font-semibold text-slate-700 ml-2">{cert.date}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* --- KEMAMPUAN --- */}
+            {/* Skills */}
             <div className="mt-6">
-              <h2 className="text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-0.5 mb-3">
+              <h2 className="text-sm sm:text-base font-bold uppercase tracking-wider text-blue-900 border-b border-slate-900 pb-1 mb-3">
                 {currentData.skillsTitle}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2.5 text-[13px] sm:text-[14px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-xs sm:text-sm">
                 <div>
-                  <span className="font-semibold text-slate-950 block">{currentData.skills.langLabels.soft}</span>
+                  <span className="font-bold text-slate-950 block">{currentData.skills.langLabels.soft}</span>
                   <span className="text-slate-700">{currentData.skills.soft}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-slate-950 block">{currentData.skills.langLabels.hard}</span>
+                  <span className="font-bold text-slate-950 block">{currentData.skills.langLabels.hard}</span>
                   <span className="text-slate-700">{currentData.skills.hard}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-slate-950 block">{currentData.skills.langLabels.indonesian}</span>
+                  <span className="font-bold text-slate-950 block">{currentData.skills.langLabels.indonesian}</span>
                   <span className="text-slate-700">{currentData.skills.indonesian}</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-slate-950 block">{currentData.skills.langLabels.english}</span>
+                  <span className="font-bold text-slate-950 block">{currentData.skills.langLabels.english}</span>
                   <span className="text-slate-700">{currentData.skills.english}</span>
                 </div>
               </div>
