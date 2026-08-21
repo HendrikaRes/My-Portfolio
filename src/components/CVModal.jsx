@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Printer, X, Mail, Phone, MapPin, Globe, Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Printer, X, Mail, MapPin, Globe, Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 const cvData = {
   ID: {
     title: "Hendrika Restu Prayoga",
     subtitle: "Lulusan Sistem Informasi & Fullstack Developer",
     location: "Pati, Jawa Tengah",
-    phone: "087-8297-132-77",
     email: "hendrikarestu2003@gmail.com",
     website: "https://hendrika-portfolio.vercel.app/",
     summary: "Lulusan Sistem Informasi dengan keahlian komprehensif di bidang pengembangan web dan tata kelola administrasi. Terampil dalam analisis sistem, pengelolaan database, serta pengolahan laporan menggunakan Microsoft Excel. Memiliki minat besar pada bagaimana teknologi dapat menyederhanakan proses kerja. Fokus saya tidak hanya pada pengembangan IT, melainkan juga pada bidang administrasi dan manajemen operasional. Berbekal kemampuan adaptasi yang cepat dan kemauan belajar yang tinggi.",
@@ -108,7 +107,6 @@ const cvData = {
     title: "Hendrika Restu Prayoga",
     subtitle: "Information Systems Graduate & Fullstack Developer",
     location: "Pati, Central Java, Indonesia",
-    phone: "087-8297-132-77",
     email: "hendrikarestu2003@gmail.com",
     website: "https://hendrika-portfolio.vercel.app/",
     summary: "Information Systems graduate with comprehensive expertise in web development and administrative governance. Skilled in systems analysis, database management, and data reporting using Microsoft Excel. Strongly interested in how technology can streamline workflows. Focuses not only on IT development but also on administration and operational management. Equipped with rapid adaptability and a strong desire to learn.",
@@ -367,10 +365,6 @@ export default function CVModal({ isOpen, onClose }) {
                 </p>
                 
                 <div className="flex flex-col gap-1 text-slate-700 text-xs sm:text-sm font-medium">
-                  <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <Phone className="w-3.5 h-3.5 text-slate-500" />
-                    <span>{currentData.phone}</span>
-                  </div>
                   <div className="flex items-center justify-center sm:justify-start gap-2">
                     <Mail className="w-3.5 h-3.5 text-slate-500" />
                     <a href={`mailto:${currentData.email}`} className="text-blue-700 hover:underline">

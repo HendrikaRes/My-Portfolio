@@ -1,14 +1,8 @@
-import { FaGithub, FaLinkedin, FaWhatsapp, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
 import { Mail, ArrowUpRight, MessageSquare, Sparkles } from 'lucide-react';
 
 export default function Footer({ lang }) {
   const socials = [
-    { 
-      name: "WhatsApp", 
-      icon: <FaWhatsapp className="w-4 h-4" />, 
-      link: "https://wa.me/6287829713277",
-      color: "hover:text-[#25D366] hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
-    },
     { 
       name: "LinkedIn", 
       icon: <FaLinkedin className="w-4 h-4" />, 
@@ -86,16 +80,6 @@ export default function Footer({ lang }) {
                   <Mail className="w-4 h-4" />
                   <span>{lang === 'ID' ? 'Kirim Pesan Email' : 'Send Email Inquiry'}</span>
                   <ArrowUpRight className="w-4 h-4" />
-                </a>
-
-                <a
-                  href="https://wa.me/6287829713277"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all duration-300"
-                >
-                  <FaWhatsapp className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp Direct</span>
                 </a>
               </div>
             </div>
