@@ -12,7 +12,7 @@ const projectsData = {
       "subtitle": "Marketplace Jasa Teknologi & Digitalisasi UMKM",
       "desc": "Platform marketplace penyedia jasa teknologi pribadi, seperti pembuatan website kustom (profil sekolah/perusahaan, landing page, e-commerce) dan aplikasi web interaktif, yang dirancang untuk mendigitalisasi UMKM lokal.",
       "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
-      "image": "/dokumentasi/techdesa.JPG",
+      "image": "/dokumentasi/techdesa.png",
       "githubLink": "#",
       "liveLink": "https://techdesa.my.id/",
       "badge": "Live Production"
