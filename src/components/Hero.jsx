@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight, FileText, Building2, CheckCircle2, Award, Calendar, Layers, ExternalLink, MapPin } from 'lucide-react';
@@ -97,7 +97,7 @@ const experiencesData = {
 
 export default function Hero({ lang }) {
   const [isCVOpen, setIsCVOpen] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
 
   const internshipImages = [
     "/dokumentasi/pres.jpeg",
@@ -108,11 +108,12 @@ export default function Hero({ lang }) {
   ];
 
   const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    heroRef.current.style.setProperty('--mouse-x', `${x}px`);
+    heroRef.current.style.setProperty('--mouse-y', `${y}px`);
   };
 
   const experiences = experiencesData[lang];
@@ -120,15 +121,16 @@ export default function Hero({ lang }) {
   return (
     <section 
       id="home" 
+      ref={heroRef}
       onMouseMove={handleMouseMove}
       className="relative pt-32 sm:pt-40 pb-24 px-4 sm:px-6 bg-[#030712] overflow-hidden"
     >
-      {/* React Bits: Spotlight Glow Background */}
+      {/* React Bits: Spotlight Glow Background (Hardware accelerated via CSS variables) */}
       <div 
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-70"
         style={{
           backgroundImage: `
-            radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59, 130, 246, 0.12), transparent 80%),
+            radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(59, 130, 246, 0.12), transparent 80%),
             radial-gradient(800px circle at 80% 20%, rgba(6, 182, 212, 0.08), transparent 70%),
             linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
@@ -376,7 +378,7 @@ export default function Hero({ lang }) {
               <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 bg-gradient-to-l from-[#030712] to-transparent pointer-events-none"></div>
 
               <motion.div
-                className="flex gap-4 sm:gap-6 w-max px-4"
+                className="flex gap-4 sm:gap-6 w-max px-4 will-change-transform"
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
               >
@@ -388,6 +390,8 @@ export default function Hero({ lang }) {
                     <img
                       src={img}
                       alt={`Dokumentasi Magang ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition-colors"></div>

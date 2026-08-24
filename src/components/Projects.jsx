@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ChevronDown, FolderGit2, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ChevronDown, FolderGit2, Sparkles, Layers, ArrowUpRight, Maximize2, X } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 
 const projectsData = {
@@ -110,7 +110,7 @@ const projectsData = {
       "subtitle": "MSME Digitalization & Tech Services Marketplace",
       "desc": "A personal technology services marketplace platform offering custom website development (school/company profiles, landing pages, e-commerce) and interactive web applications designed to digitize local MSMEs.",
       "tech": ["React.js", "Tailwind CSS", "Laravel", "MySQL"],
-      "image": "/dokumentasi/techdesa.JPG",
+      "image": "/dokumentasi/techdesa.png",
       "githubLink": "#",
       "liveLink": "https://techdesa.my.id/",
       "badge": "Live Production"
@@ -205,6 +205,7 @@ const projectsData = {
 export default function Projects({ lang }) {
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [activeId, setActiveId] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const toggleDropdown = (id) => {
     setActiveId(activeId === id ? null : id);
@@ -290,20 +291,43 @@ export default function Projects({ lang }) {
               className="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group"
             >
               {/* Project Visual Thumbnail */}
-              <div className="relative overflow-hidden aspect-[16/10] bg-slate-950 border-b border-white/5">
+              <div 
+                className="relative overflow-hidden aspect-[16/10] bg-slate-950/80 border-b border-white/5 flex items-center justify-center p-2.5 cursor-pointer group"
+                onClick={() => setSelectedImage({ src: project.image, title: project.title })}
+              >
+                {/* Ambient Blurred Backdrop */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-25 scale-125 pointer-events-none transition-opacity duration-500 group-hover:opacity-35"
+                  style={{ backgroundImage: `url(${project.image})` }}
+                />
+
+                {/* Full Uncropped Image */}
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain rounded-lg transition-transform duration-500 group-hover:scale-105 drop-shadow-md"
                 />
                 
                 {/* Floating Badge */}
-                <div className="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-medium text-cyan-400 px-2.5 py-1 rounded-full">
+                <div className="absolute top-3 right-3 z-20 bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-medium text-cyan-400 px-2.5 py-1 rounded-full pointer-events-none shadow-sm">
                   {project.badge}
                 </div>
 
                 {/* Hover Links Overlay */}
-                <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                <div 
+                  className="absolute inset-0 z-20 bg-slate-950/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setSelectedImage({ src: project.image, title: project.title })}
+                    className="p-3 bg-slate-900/90 hover:bg-cyan-600 text-white border border-white/10 rounded-full transition-all duration-300 shadow-lg cursor-pointer"
+                    title={lang === 'ID' ? 'Perbesar Foto Penuh' : 'Enlarge Full Image'}
+                  >
+                    <Maximize2 className="w-4 h-4" />
+                  </button>
                   {project.githubLink && project.githubLink !== "#" && (
                     <a
                       href={project.githubLink}
@@ -422,6 +446,46 @@ export default function Projects({ lang }) {
         </div>
 
       </div>
+
+      {/* Fullscreen Image Preview Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl w-full max-h-[90vh] bg-slate-950 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-slate-900/80">
+                <span className="text-sm font-semibold text-white truncate">{selectedImage.title}</span>
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="text-slate-400 hover:text-white p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 transition-colors cursor-pointer"
+                  title="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-4 flex items-center justify-center overflow-auto max-h-[80vh] bg-slate-950">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-lg shadow-lg"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

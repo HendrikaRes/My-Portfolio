@@ -1,11 +1,18 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ShieldCheck, Cpu } from 'lucide-react';
 
 export default function LanyardIDCard({ lang }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
   const cardRef = useRef(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [12, -12]), { stiffness: 260, damping: 22 });
+  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-12, 12]), { stiffness: 260, damping: 22 });
+
+  const glareX = useTransform(rawX, [-0.5, 0.5], [15, 85]);
+  const glareY = useTransform(rawY, [-0.5, 0.5], [15, 85]);
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -16,20 +23,13 @@ export default function LanyardIDCard({ lang }) {
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    const rX = -((mouseY - height / 2) / (height / 2)) * 15;
-    const rY = ((mouseX - width / 2) / (width / 2)) * 15;
-
-    setTilt({ x: rX, y: rY });
-    setGlare({
-      x: (mouseX / width) * 100,
-      y: (mouseY / height) * 100,
-      opacity: 0.4,
-    });
+    rawX.set(mouseX / width - 0.5);
+    rawY.set(mouseY / height - 0.5);
   };
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setGlare({ x: 50, y: 50, opacity: 0 });
+    rawX.set(0);
+    rawY.set(0);
   };
 
   return (
@@ -83,21 +83,13 @@ export default function LanyardIDCard({ lang }) {
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          animate={{
-            rotateX: tilt.x,
-            rotateY: tilt.y,
+          style={{
+            rotateX,
+            rotateY,
+            transformStyle: "preserve-3d",
           }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="relative w-[310px] sm:w-[340px] rounded-3xl p-3.5 bg-gradient-to-b from-white/20 via-white/10 to-white/5 border border-white/20 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.85),0_0_35px_rgba(59,130,246,0.25)] backdrop-blur-2xl cursor-grab active:cursor-grabbing overflow-hidden"
+          className="relative w-[310px] sm:w-[340px] rounded-3xl p-3.5 bg-gradient-to-b from-white/20 via-white/10 to-white/5 border border-white/20 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.85),0_0_35px_rgba(59,130,246,0.25)] backdrop-blur-xl cursor-grab active:cursor-grabbing overflow-hidden will-change-transform"
         >
-          {/* Dynamic Light Glare Overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-30 rounded-3xl"
-            style={{
-              background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glare.opacity}) 0%, transparent 60%)`,
-            }}
-          />
-
           {/* Card Top Attachment Slot Cutout */}
           <div className="w-14 h-2.5 bg-slate-950/90 border border-white/20 rounded-full mx-auto mb-3.5 shadow-inner"></div>
 
@@ -136,6 +128,7 @@ export default function LanyardIDCard({ lang }) {
               <img
                 src="/img/pp12.webp"
                 alt="Hendrika Restu Prayoga"
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>

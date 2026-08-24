@@ -389,6 +389,8 @@ export default function CVModal({ isOpen, onClose }) {
                 <img
                   src="/img/Hendrika.jpg"
                   alt="Hendrika Restu Prayoga"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

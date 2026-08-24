@@ -18,10 +18,15 @@ export default function Interactive3DOrb({ className = "" }) {
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     camera.position.z = 5.5;
 
-    // Renderer with high precision and transparency
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    // Renderer with optimized precision, power preference, and transparency
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: true,
+      powerPreference: "high-performance",
+      precision: "mediump"
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     container.appendChild(renderer.domElement);
 
     // Group for all elements
@@ -51,7 +56,7 @@ export default function Interactive3DOrb({ className = "" }) {
     sceneGroup.add(nodeMesh);
 
     // 3. Floating Particle Constellation
-    const particleCount = 120;
+    const particleCount = 100;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -106,8 +111,8 @@ export default function Interactive3DOrb({ className = "" }) {
       mouseY = 0;
     };
 
-    container.addEventListener('pointermove', handlePointerMove);
-    container.addEventListener('pointerleave', handlePointerLeave);
+    container.addEventListener('pointermove', handlePointerMove, { passive: true });
+    container.addEventListener('pointerleave', handlePointerLeave, { passive: true });
 
     // Resize Observer
     const resizeObserver = new ResizeObserver((entries) => {
@@ -122,11 +127,13 @@ export default function Interactive3DOrb({ className = "" }) {
     });
     resizeObserver.observe(container);
 
-    // Smooth animation loop
+    // Smooth animation loop with IntersectionObserver visibility check
     let animationFrameId;
+    let isVisible = true;
     const clock = new THREE.Clock();
 
     const animate = () => {
+      if (!isVisible) return;
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
@@ -148,11 +155,26 @@ export default function Interactive3DOrb({ className = "" }) {
       renderer.render(scene, camera);
     };
 
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        cancelAnimationFrame(animationFrameId);
+        clock.start();
+        animate();
+      } else {
+        cancelAnimationFrame(animationFrameId);
+        clock.stop();
+      }
+    }, { threshold: 0.05 });
+
+    visibilityObserver.observe(container);
     animate();
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       container.removeEventListener('pointermove', handlePointerMove);
       container.removeEventListener('pointerleave', handlePointerLeave);
 
